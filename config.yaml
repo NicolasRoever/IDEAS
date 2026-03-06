@@ -1,4 +1,9 @@
-model: "claude-sonnet-4-20250514"
+model_routing:
+  generation: "claude-opus-4-6"
+  judging: "claude-opus-4-6"
+  refinement: "claude-opus-4-6"
+  novelty: "claude-sonnet-4-6"
+
 api_key_env: "ANTHROPIC_API_KEY"
 openalex_api_key_env: "OPENALEX_API_KEY"
 

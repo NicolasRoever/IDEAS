@@ -2,6 +2,7 @@
 
 import re
 import anthropic
+from pipeline.cost_tracker import CostTracker
 
 
 def _format_taste_profile(taste_profile: list[dict]) -> str:
@@ -53,11 +54,12 @@ def judge_seeds(
     research_vision: str,
     taste_profile: list[dict],
     config: dict,
+    tracker: CostTracker,
     verbose: bool = True,
 ) -> list[dict]:
     """Score each seed individually; return filtered, sorted survivors."""
     client = anthropic.Anthropic()
-    model = config["model"]
+    model = config["model_routing"]["judging"]
     score_threshold = config["judging"]["score_threshold"]
     max_survivors = config["judging"]["max_survivors"]
 
@@ -95,6 +97,7 @@ Respond with:
             messages=[{"role": "user", "content": user_msg}],
         )
 
+        tracker.record("judging", model, response.usage.input_tokens, response.usage.output_tokens)
         raw_text = response.content[0].text
         score, reasoning, risk = _parse_judgment(raw_text)
 

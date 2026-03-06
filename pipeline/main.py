@@ -16,26 +16,23 @@ sys.path.insert(0, str(ROOT))
 from pipeline.generator import generate_seeds
 from pipeline.taste_judge import judge_seeds
 from pipeline.novelty_checker import check_novelty
+from pipeline.cost_tracker import CostTracker
 
 
 def load_config(path: Path) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
+    return yaml.safe_load(path.read_text())
 
 
 def load_taste_profile(path: Path) -> list[dict]:
-    with open(path) as f:
-        return json.load(f)
+    return json.loads(path.read_text())
 
 
 def load_research_vision(path: Path) -> str:
-    with open(path) as f:
-        return f.read()
+    return path.read_text()
 
 
 def write_json(data, path: Path):
-    with open(path, "w") as f:
-        json.dump(data, f, indent=2)
+    path.write_text(json.dumps(data, indent=2))
     print(f"  Wrote {path}")
 
 
@@ -85,21 +82,23 @@ def main():
     batch_dir.mkdir(parents=True, exist_ok=True)
     print(f"Output directory: {batch_dir}\n")
 
+    tracker = CostTracker()
+
     # Stage 1: Generate seeds
     print("=== Stage 1: Generating seeds ===")
-    raw_seeds = generate_seeds(research_vision, taste_profile, config)
+    raw_seeds = generate_seeds(research_vision, taste_profile, config, tracker)
     write_json(raw_seeds, batch_dir / "seeds_raw.json")
     print(f"Generated {len(raw_seeds)} seeds\n")
 
     # Stage 2: Taste judging
     print("=== Stage 2: Taste judging ===")
-    scored_seeds = judge_seeds(raw_seeds, research_vision, taste_profile, config)
+    scored_seeds = judge_seeds(raw_seeds, research_vision, taste_profile, config, tracker)
     write_json(scored_seeds, batch_dir / "seeds_scored.json")
     print(f"Passed taste filter: {len(scored_seeds)} seeds\n")
 
     # Stage 3: Novelty check
     print("=== Stage 3: Novelty check ===")
-    final_seeds = check_novelty(scored_seeds, config)
+    final_seeds = check_novelty(scored_seeds, config, tracker)
     write_json(final_seeds, batch_dir / "seeds_final.json")
     print(f"Passed novelty check: {len(final_seeds)} seeds\n")
 
@@ -107,9 +106,14 @@ def main():
     print("=== Generating report ===")
     report_text = generate_report(final_seeds)
     report_path = batch_dir / "report.md"
-    with open(report_path, "w") as f:
-        f.write(report_text)
+    report_path.write_text(report_text)
     print(f"  Wrote {report_path}")
+
+    # Cost summary
+    cost_summary = tracker.summary()
+    (batch_dir / "cost.json").write_text(
+        __import__("json").dumps({"records": tracker.records, "total_usd": tracker.total_cost()}, indent=2)
+    )
 
     # Summary
     print(
@@ -118,6 +122,7 @@ def main():
         f"{len(final_seeds)} passed novelty → "
         f"top {min(len(final_seeds), config['output']['top_n'])} in report.md"
     )
+    print(f"\n{cost_summary}")
 
 
 if __name__ == "__main__":

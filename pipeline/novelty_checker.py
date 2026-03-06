@@ -4,12 +4,13 @@ import re
 import time
 import anthropic
 import requests
+from pipeline.cost_tracker import CostTracker
 
 
 OPENALEX_BASE = "https://api.openalex.org/works"
 
 
-def _generate_queries(seed: dict, client: anthropic.Anthropic, model: str) -> list[str]:
+def _generate_queries(seed: dict, client: anthropic.Anthropic, model: str, tracker: CostTracker) -> list[str]:
     """Use LLM to generate 2-3 short keyword search queries for a seed."""
     prompt = f"""Given this research idea, generate 2-3 short keyword search queries to find related existing papers in economics.
 
@@ -25,6 +26,7 @@ Return only the queries, one per line. Each query should be 3-6 words. No number
         messages=[{"role": "user", "content": prompt}],
     )
 
+    tracker.record("novelty", model, response.usage.input_tokens, response.usage.output_tokens)
     raw = response.content[0].text.strip()
     queries = [line.strip() for line in raw.splitlines() if line.strip()]
     return queries[:3]
@@ -104,6 +106,7 @@ def _assess_novelty(
     retrieved_papers: list[dict],
     client: anthropic.Anthropic,
     model: str,
+    tracker: CostTracker,
 ) -> tuple[str, str, str]:
     """LLM novelty assessment. Returns (verdict, nearest_paper, distinction)."""
     seed_text = (
@@ -134,6 +137,7 @@ Respond with:
         messages=[{"role": "user", "content": prompt}],
     )
 
+    tracker.record("novelty", model, response.usage.input_tokens, response.usage.output_tokens)
     raw = response.content[0].text
 
     verdict_match = re.search(r'VERDICT:\s*["\']?(novel|partially_novel|already_done)["\']?', raw, re.IGNORECASE)
@@ -155,11 +159,12 @@ Respond with:
 def check_novelty(
     seeds: list[dict],
     config: dict,
+    tracker: CostTracker,
     verbose: bool = True,
 ) -> list[dict]:
     """Check novelty of each seed; return filtered, sorted final list."""
     client = anthropic.Anthropic()
-    model = config["model"]
+    model = config["model_routing"]["novelty"]
     papers_per_query = config["novelty"]["papers_per_query"]
     top_n = config["output"]["top_n"]
 
@@ -170,7 +175,7 @@ def check_novelty(
             print(f"  Checking novelty {seed['id']} ({i+1}/{len(seeds)}): {seed['title'][:60]}...")
 
         # Step 1: Generate search queries
-        queries = _generate_queries(seed, client, model)
+        queries = _generate_queries(seed, client, model, tracker)
         if verbose:
             print(f"    Queries: {queries}")
 
@@ -186,7 +191,7 @@ def check_novelty(
             print(f"    Retrieved {len(retrieved)} unique papers")
 
         # Step 3: LLM novelty assessment
-        verdict, nearest_paper, distinction = _assess_novelty(seed, retrieved, client, model)
+        verdict, nearest_paper, distinction = _assess_novelty(seed, retrieved, client, model, tracker)
 
         if verbose:
             print(f"    Verdict: {verdict}")

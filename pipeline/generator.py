@@ -4,12 +4,13 @@ import random
 import re
 from typing import Optional
 import anthropic
+from pipeline.cost_tracker import CostTracker
 
 
 STRATEGIES = [
     (
         "mechanism_first",
-        "Propose 10 research ideas that start from a behavioral or economic mechanism and find a surprising empirical setting to test it. The setting should be one where standard theory and behavioral theory make different predictions.",
+        "Propose 10 research ideas that start from a behavioral or economic mechanism and find a surprising empirical setting to test it.",
     ),
     (
         "puzzle_first",
@@ -17,7 +18,7 @@ STRATEGIES = [
     ),
     (
         "method_first",
-        "Propose 10 research ideas built around an elegant identification strategy — a natural experiment, institutional feature, or data structure that enables unusually clean causal inference on an important question.",
+        "Propose 10 research ideas built around an elegant identification strategy — a natural experiment, institutional feature, data structure or surprising new method that enables unusually clean causal inference on an important question.",
     ),
     (
         "cross_pollination",
@@ -121,11 +122,12 @@ def generate_seeds(
     research_vision: str,
     taste_profile: list[dict],
     config: dict,
+    tracker: CostTracker,
     verbose: bool = True,
 ) -> list[dict]:
     """Run 5 strategy calls and return up to 50 seeds."""
     client = anthropic.Anthropic()
-    model = config["model"]
+    model = config["model_routing"]["generation"]
     temperature = config["generation"]["temperature"]
 
     # Sample 20 papers for generation context
@@ -139,12 +141,11 @@ def generate_seeds(
         if verbose:
             print(f"  Generating: {strategy_name}...")
 
-        system_msg = f"""You are a creative research idea generator for an economist.
-Here is their research vision and intellectual identity:
+        system_msg = f"""You are a creative research idea generator for an economist. Be extremnely bold and imaginative. Propose ideas that are surprising and non-obvious, not incremental or obvious extensions of existing work. Don't be afraid to propose ideas that might be risky or fail — the goal is to generate a diverse set of seeds, not to only generate "safe" ideas. They should have top-5 potential. Here is the economist's research vision and intellectual identity:
 
 {research_vision}
 
-Here are sample papers from their reading list to understand their intellectual world:
+Here are sample papers from their reading list and his reaction to them to understand their intellectual world:
 
 {papers_context}
 """
@@ -161,6 +162,7 @@ Here are sample papers from their reading list to understand their intellectual 
             messages=[{"role": "user", "content": user_msg}],
         )
 
+        tracker.record("generation", model, response.usage.input_tokens, response.usage.output_tokens)
         raw_text = response.content[0].text
         seeds = _parse_seeds(raw_text, strategy_name, id_offset)
 
