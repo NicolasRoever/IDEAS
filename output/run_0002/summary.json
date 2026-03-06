@@ -1,0 +1,70 @@
+{
+  "run_id": "0002",
+  "version": "0.2.0",
+  "date": "2026-03-06",
+  "started_at": "2026-03-06T16:00:35.913803+00:00",
+  "finished_at": "2026-03-06T16:13:40.337253+00:00",
+  "duration_seconds": 784.4,
+  "config": {
+    "version": "0.2.0",
+    "model_routing": {
+      "generation": "claude-opus-4-6",
+      "judging": "claude-haiku-4-5",
+      "novelty": "claude-sonnet-4-6"
+    },
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "google_api_key_env": "GOOGLE_API_KEY",
+    "openalex_api_key_env": "OPENALEX_API_KEY",
+    "free_filter": {
+      "score_threshold": 2
+    },
+    "generation": {
+      "num_seeds": 50,
+      "seeds_per_call": 10,
+      "temperature": 1.0
+    },
+    "judging": {
+      "score_threshold": 40,
+      "max_survivors": 20
+    },
+    "novelty": {
+      "papers_per_query": 5,
+      "api": "openalex"
+    },
+    "output": {
+      "top_n": 10
+    }
+  },
+  "stage_stats": {
+    "seeds_generated": 25,
+    "seeds_passed_taste": 20,
+    "seeds_passed_novelty": 10,
+    "top_n": 10
+  },
+  "cost": {
+    "by_stage": {
+      "generation": {
+        "calls": 5,
+        "input_tokens": 6505,
+        "output_tokens": 15483,
+        "cost_usd": 0.41960000000000003,
+        "model": "claude-opus-4-6"
+      },
+      "judging": {
+        "calls": 25,
+        "input_tokens": 83969,
+        "output_tokens": 9153,
+        "cost_usd": 0.0,
+        "model": "claude-haiku-4-5"
+      },
+      "novelty": {
+        "calls": 40,
+        "input_tokens": 55824,
+        "output_tokens": 4730,
+        "cost_usd": 0.23842200000000002,
+        "model": "claude-sonnet-4-6"
+      }
+    },
+    "total_usd": 0.658022
+  }
+}

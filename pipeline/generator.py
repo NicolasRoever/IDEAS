@@ -74,7 +74,7 @@ def _parse_single_seed(block: str, strategy: str, idx: int) -> Optional[dict]:
     )
 
     def extract_field(label: str) -> str:
-        pattern = rf"{label}:\s*(.+?)(?=\n(?:{all_headers}):|$)"
+        pattern = rf"{label}:\s*(.+?)(?=\n\s*(?:{all_headers}):|$)"
         m = re.search(pattern, block, re.IGNORECASE | re.DOTALL)
         if m:
             val = m.group(1).strip()

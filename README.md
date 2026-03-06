@@ -22,3 +22,5 @@ All in all, the generator did a good job. It cost 46 cents to run. Maybe we coul
 ### Evaluating the Judge
 
 This was super expensive - $2.41. 
+
+## Insights from Run 2 

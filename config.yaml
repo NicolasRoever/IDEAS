@@ -1,9 +1,8 @@
-version: "0.1.0"
+version: "0.2.0"
 
 model_routing:
   generation: "claude-opus-4-6"
-  free_filter: "gemini-3.1-flash-lite-preview"
-  judging: "claude-sonnet-4-6"
+  judging: "claude-haiku-4-5"
   novelty: "claude-sonnet-4-6"
 
 api_key_env: "ANTHROPIC_API_KEY"
