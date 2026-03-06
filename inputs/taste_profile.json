@@ -1,0 +1,188 @@
+[
+  {
+    "id": 1,
+    "title": "Automated Social Science: Language Models as Scientist and Subjects",
+    "abstract": "We present an approach for automatically generating and testing, in silico, social scientific hypotheses. This automation is made possible by recent advances in large language models (LLM), but the key feature of the approach is the use of structural causal models. Structural causal models provide a language to state hypotheses, a blueprint for constructing LLM-based agents, an experimental design, and a plan for data analysis. The fitted structural causal model becomes an object available for prediction or the planning of follow-on experiments. We demonstrate the approach with several scenarios: a negotiation, a bail hearing, a job interview, and an auction. In each case, causal relationships are both proposed and tested by the system, finding evidence for some and not others. We provide evidence that the insights from these simulations of social interactions are not available to the LLM purely through direct elicitation. When given its proposed structural causal model for each scenario, the LLM is good at predicting the signs of estimated effects, but it cannot reliably predict the magnitudes of those estimates. In the auction experiment, the in silico simulation results closely match the predictions of auction theory, but elicited predictions of the clearing prices from the LLM are inaccurate. However, the LLM's predictions are dramatically improved if the model can condition on the fitted structural causal model. In short, the LLM knows more than it can (immediately) tell.",
+    "reaction": "- The general idea is nice: LLMs should capture some tacit knowledge\n- However, the paper has no conceptual direction it has this idea and no idea how to actually show it/benchmark it and no clear takeaway. The abstract maanders from different losely related insights without a clear punchline"
+  },
+  {
+    "id": 2,
+    "title": "When Product Markets Become Collective Traps: The Case of Social Media",
+    "abstract": "Individuals might experience negative utility from not consuming a popular product. With such externalities to non-users, standard consumer surplus measures, which take aggregate consumption as given, fail to appropriately capture consumer welfare. The authors propose an approach to account for these externalities and apply it to estimate consumer welfare from TikTok and Instagram. Incentivized experiments with college students indicate positive welfare based on the standard measure, but negative welfare when accounting for non-user externalities. The findings highlight the existence of product market traps, where active users of a platform prefer it not to exist.",
+    "reaction": "This is the gold standard of what I aspire to. It takes a novel conceptual move Ñ the outside option for welfare is wrong when there are non-user externalities Ñ and builds the entire paper around it.\n- This is what I mean by \"theory leads, empirics follow.\" It also speaks to something real: social media regulation, antitrust, positional goods."
+  },
+  {
+    "id": 3,
+    "title": "Non-User Utility and Market Power: The Case of Smartphones",
+    "abstract": "Firms can increase the demand for their products and consolidate market power not only by increasing user utility but also by strategically decreasing the utility of competing products' users. The paper studies Apple's strategy of differentiating messages sent to Android phones with \"green bubbles.\" Surveys with U.S. college students show green bubbles are widely stigmatized. An incentivized deactivation experiment reveals significant WTP to prevent messages from appearing as green bubbles. Removing green bubbles substantially increases respondents' likelihood of choosing Android over iPhone.",
+    "reaction": "- Companion to the Collective Traps paper but with a sharper IO angle. The theoretical point is crisp: increasing user utility and decreasing non-user utility are observationally equivalent in price-quantity data, but have opposite welfare implications. You cannot tell from market shares alone whether Apple is dominant because iPhones are great or because green bubbles impose stigma on Android users. This is a clean impossibility result for standard demand estimation. The design Ñ WTP for deactivating green bubbles Ñ is simple and devastating. Practical implications for antitrust are immediate."
+  },
+  {
+    "id": 4,
+    "title": "From Extreme to Mainstream: The Erosion of Social Norms",
+    "abstract": "The paper examines how social norms can erode rapidly when new public information Ñ such as an election outcome Ñ arrives. Using experiments around the 2016 U.S. Presidential election, it shows that Donald Trump's rise in popularity causally increased individuals' willingness to publicly express xenophobic views, and simultaneously made observers less likely to sanction such expression. A signaling model shows that a public signal suggesting more people hold an extreme view can increase public expression of that view while reducing the inference that any single person expressing it is truly extreme.",
+    "reaction": "The model/conceptual idea is the star. It captures a subtle equilibrium effect: a signal that extremism is common increases public expression (more people \"come out\") and decreases stigma per expression (because the signal pools extremists with conformists). The paper shows how social norms can flip quickly, not gradually Ñ which challenges the persistence-of-culture literature. This is what \"theory + sharp experiment\" looks like at the AER."
+  },
+  {
+    "id": 5,
+    "title": "Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia",
+    "abstract": "The vast majority of married men in Saudi Arabia privately support women working outside the home (WWOH) but substantially underestimate the support of other men. An experiment corrects these misperceptions by providing information about others' true beliefs, which leads to a 36% increase in sign-up rates for a female job-matching service. Follow-up surveys 3Ð5 months later show persistent effects on wives' labor supply outcomes and spillovers to other domains (e.g., driving lessons).",
+    "reaction": "Super great: Pluralistic ignorance as a market friction Ñ that's the deep insight. The labor market for women in Saudi Arabia is inefficient not because of preferences or laws but because of misperceived social norms. The conceptual point generalizes far beyond Saudi Arabia: anywhere people privately agree but publicly conform, correcting norm perceptions can unlock behavioral change."
+  },
+  {
+    "id": 6,
+    "title": "Melons as Lemons: Asymmetric Information, Consumer Learning and Seller Reputation",
+    "abstract": "Quality provision is often low in developing markets, and firms commonly lack a reputation for quality. In Chinese watermelon retail markets, the paper documents significant asymmetric information between sellers and buyers and an absence of quality premiums. A theoretical model highlights the role of consumer beliefs and costly signaling. A field experiment introducing two signaling technologies Ñ a cheap sticker and an expensive laser label Ñ shows that only the costly laser label induces quality provision, higher sales, and reputation building, consistent with the theory. Structural estimation of consumer learning shows pessimistic beliefs hinder reputation building.",
+    "reaction": "A textbook example of theory _ experiment _ structural estimation, all fitting together seamlessly. The Akerlof (1970) lemons problem is the oldest market failure in the book, and yet this paper provides the first clean field experiment that tests it end-to-end in a real market. The watermelon setting is brilliant Ñ quality is objectively measurable (sweetness meter), sellers can sort, but the market is stuck in a no-reputation equilibrium. The dual signaling treatment (cheap sticker vs. expensive laser) is exactly what the theory predicts: only a costly signal works, because it shifts beliefs enough to make reputation-building profitable. The structural consumer learning model then recovers the belief dynamics, closing the loop. What I especially admire: the paper takes \"why don't markets work in developing countries?\" Ñ a vague but big and important question Ñ and gives it a precise, testable, theory-grounded answer."
+  },
+  {
+    "id": 7,
+    "title": "The Market for 'Lemons': Quality Uncertainty and the Market Mechanism",
+    "abstract": "The paper relates quality and uncertainty in markets where buyers use market statistics to judge quality. Sellers of good-quality products are driven out because returns to quality accrue to the group average, not the individual seller. The result is a reduction in average quality and market size. Applications include used cars, insurance, credit in developing countries, and the cost of dishonesty. Social and private returns differ, suggesting potential welfare gains from institutions or government intervention.",
+    "reaction": "This is one of the most brilliant theoretical points ever made in the science of economics. with a simple observation (you can't tell if a used car is good) and derive a non-obvious equilibrium consequence (the market unravels). The formalism is minimal Ñ the algebra takes half a page. The power is in the idea."
+  },
+  {
+    "id": 8,
+    "title": "Evaluating Behavioral Interventions at Scale with AI",
+    "abstract": "The paper tests three AI-delivered conversation protocols to increase motivation for behavioral change among 2,719 social media users: two Motivational Interviewing (MI) protocols (change-focused self-persuasion vs. decisional balance) and a direct persuasion protocol. All three significantly increase motivation and perceived costs of social media use, with change-focused self-persuasion yielding the largest effects on motivation and direct persuasion the largest effects on actual use reduction (via concrete planning). Effects persist 2+ weeks. AI delivery enables standardized treatment implementation at scale.",
+    "reaction": "This is the methodological frontier for my AI interviewing research. It shows that AI can deliver clinical-grade motivational interviews at scale with high fidelity"
+  },
+  {
+    "id": 9,
+    "title": "The Immigrant Next Door",
+    "abstract": ": Using an instrumental variables strategy based on historical migration patterns, the paper estimates the causal effect of ancestral presence of Arab-Muslim populations in U.S. counties on native attitudes and behavior. Greater exposure reduces both implicit and explicit prejudice against Arab-Muslims, and increases altruistic behavior toward them. Effects operate through naturally occurring day-to-day contact over decades.",
+    "reaction": "I think this is an ok paper. It basically draws on the contact hypothesis (which has been out there forever) and gets at some specifics of this. Very interesting, very loaded topic, so it is ok, but not super economics/markets related."
+  },
+  {
+    "id": 10,
+    "title": "Competition and Quality in Science",
+    "abstract": "Using comprehensive data on protein structure discoveries in structural biology, the paper shows that competition (racing) causes scientists to cut corners. Priority races lead to faster but lower-quality scientific output. The \"maturation\" period Ñ time between starting and depositing a structure Ñ is significantly shorter under competition, and the resulting structures have more quality defects. A survey experiment with scientists confirms the causal mechanism: researchers report they would spend less time and produce lower quality when facing competitive pressure.",
+    "reaction": "- I love the creative combination of the economics domain (competition/markets) with Biology (protein research)\n- The conceptual point is great: This paper turns the standard \"competition is good\" intuition on its head for a domain Ñ science Ñ where quality matters enormously.\n- This connects to my broader interest in how competitive structures can be welfare-destroying when the activity generates externalities (here, unreliable science that downstream researchers build on)."
+  },
+  {
+    "id": 11,
+    "title": "Beyond Happiness and Satisfaction: Toward Well-Being Indices Based on Stated Preference",
+    "abstract": "The paper proposes a well-being index constructed from stated-preference (SP) data rather than subjective well-being (SWB) surveys. Respondents compare hypothetical scenarios varying on multiple life dimensions, allowing estimation of marginal rates of substitution between well-being aspects. The resulting index respects individual sovereignty and avoids the paternalism of researcher-imposed weights while being grounded in preference theory.",
+    "reaction": "- I like the idea - we should think more about what actually matters to people, and the real arguments for writing down preferences are super shaky\n- I personally find the methods crude, this choosing between bundles seems like an academic exercise, and I am not a big fan of their results"
+  },
+  {
+    "id": 12,
+    "title": "Pricing Power in Advertising Markets: Theory and Evidence",
+    "abstract": "Existing theories of media competition imply that advertisers will pay a lower price in equilibrium to reach consumers who multi-home across competing outlets. We generalize and extend this theoretical result and test it using data from television and social media advertising. The model is a good match, qualitatively and quantitatively, to variation in advertising prices across demographic groups, outlets, platforms, and over time. Television outlets whose viewers watch more television charge a lower price per impression to advertisers, which helps rationalize well-known stylized facts such as a premium for younger and more male audiences on television. A quantitative version of our model whose only free parameter is a scale normalization can explain 35 percent of the variation in price per impression across owners of television networks, and aligns with recent trends in television advertising revenue. We use the model to quantify the impact of mergers and the effect of Netflix ad carriage on prices for linear television advertising, and extend our analysis to social media markets where we find evidence of a premium for older audiences (who multi-home less).",
+    "reaction": "- This paper is about explaining how advertising prices come about. They build a theory model (based on bargaining) and then show that the predictions of the model fit the data very well. Super interesting micro paper."
+  },
+  {
+    "id": 13,
+    "title": "Transhumant Pastoralism, Climate Change and Conflict in Africa",
+    "abstract": "We examine the effects of climate change on seasonally migrant populations that herd livestockÑtranshumant pastoralistsÑin Africa. In typical years, neighbouring transhumant pastoral and sedentary agricultural groups coexist in a symbiotic relationship. Rainfall scarcity can disrupt this arrangement by inducing pastoral groups to migrate to agricultural lands before the harvest, causing conflict to emerge. Using georeferenced conflict data and satellite information on rainfall and vegetation, we find that reduced rainfall in the territory of transhumant pastoralists leads to conflict in neighbouring areas. Conflicts are concentrated in agricultural areas, occur during the wet season and not the dry season, and are due to rainfall's impact on plant biomass growth. Since pastoralists tend to be Muslim and agriculturalists Christian, this mechanism accounts for a sizable proportion of the rapid rise in religious conflict observed in recent decades. We find that development aid projects tend not to mitigate the documented effects, but the effects are reduced when transhumant pastoralists have greater power in national government.",
+    "reaction": "They show that climate change leads to more conflict between farmers. Interesting, but what's the point? More a descriptive point? Lack of conceptual depth does not make this paper super strong."
+  },
+  {
+    "id": 14,
+    "title": "Good Politicians: Experimental Evidence on Motivations for Political Candidacy and Government Performance",
+    "abstract": "How can we motivate good politiciansÑthose that will carry out policy that is responsive to citizens' preferencesÑto enter politics? In a field experiment in Pakistan, we vary how political office is portrayed to ordinary citizens. Emphasizing prosocial motives for holding political office instead of personal returnsÑsuch as the ability to help others versus enhancing one's own respect and statusÑraises the likelihood that individuals run for office and that voters elect them. A year later, the treatment improves the alignment of policy with citizens' preferences. These effects emerge only when treatments are randomly delivered in a public setting. The candidacy decisions are explained by social influence, and not information salienceÑsocial versus personal messaging matters only when randomly delivered in a public setting but not in private. The results demonstrate that non-financial motivations for political entry shape how politicians perform in office.",
+    "reaction": "-They make a field experiments portraying motivations to run for office differently - and it works! Very cool.\nÐ I think the core idea of thinking about different motivations is also quite nice; one could reframe this as a labor market"
+  },
+  {
+    "id": 15,
+    "title": "Outside Options and Optimal Bargaining Dynamics",
+    "abstract": "This paper studies the design of optimal bargaining strategies when the agent's outside option changes over time. We solve for the principal's optimal strategy and find a new bargaining dynamic where, when the agent's outside option increases, the agent is tempted to cease bargaining, leading the principal to increase the agent's continuation by gradually promising the agent a larger share of the surplus (decreasing demands) and giving the agent more time to explore his outside option before being forced to make a decision (decreasing pressure). This illustrates a complementarity between these two tools. Although the principal's expected utility is decreasing in the outside option, it increases when the expected value of the outside option tomorrow rises. Additionally, the principal's optimal strategy can be implemented without commitment.",
+    "reaction": "Full theory paper; hard to understand for me what the prupose Is etc."
+  },
+  {
+    "id": 16,
+    "title": "WOMEN LEFT BEHIND: GENDER DISPARITIES IN UTILIZATION OF GOVERNMENT HEALTH INSURANCE IN INDIA",
+    "abstract": "A government program entitles 46 million poor individuals in India to free hospital care, yet large gender disparities exist within it. We document that females account for only 45% of all hospital visits under the Bhamashah program, with the biggest gaps among children under 15 years (33%) and adults 50 years and older (43%). The female share of hospital visits is 4-10 percentage points lower than projected based on population prevalence of illness. Care is not free in practice and higher costs are associated with larger disparities. However, lowering care costs increases female utilization but does not reduce gender disparities because marginal beneficiaries are as likely to be male as inframarginals. Long-term exposure to local female leaders reduces disparities by addressing factors lowering female care. We find that in the presence of gender bias, subsidizing social services may fail to address gender inequalities without actions that specifically target females.",
+    "reaction": "- In a sense this is interesting, because it gets at the interaction of market mechanisms and social norms. And then they have nice data to back that up. Interesting!"
+  },
+  {
+    "id": 17,
+    "title": "THE DYNAMICS OF ABUSIVE RELATIONSHIPS",
+    "abstract": "Domestic abuse encompasses a range of damaging behaviors beyond physical violence, including economic and emotional abuse. Using Finnish administrative data and a matched-control event-study design along with within-individual comparisons of outcomes across relationships, we document three new facts. First, women who begin relationships with (eventually) physically abusive men suffer large and significant earnings and employment falls immediately upon cohabiting with the abusive partner. Second, the decline in economic outcomes is non-monotonic in women's pre-cohabitation outside options. Third, men who are violent against women in any capacity impose economic costs on all their female partners, even those who do not report physical violence. To rationalize these findings, we develop a new dynamic model of abusive relationships where women do not perfectly observe their partner's type and abusive men have an incentive to use economic suppression to sabotage women's outside options and their ability to later exit the relationship.",
+    "reaction": "- This is super strange, it seems like they take economic methods to a topic which does not warrant them\n- I mean it is quite obvious that if your partner abuses you, this will have a strain on productivity/life functioning\n- Then using a dynamic model is just throwing methods we know as economists blindly onto a topic without thinking about whether this really makes sense"
+  },
+  {
+    "id": 18,
+    "title": "THE HEALTH COSTS OF COST SHARING",
+    "abstract": "What happens when patients suddenly stop taking their medications? We study the health consequences of drug interruptions caused by large, abrupt, and arbitrary changes in price. Medicare's prescription drug benefit as-if-randomly assigns 65-year-olds a drug budget as a function of their birth month, beyond which out-of-pocket costs suddenly increase. Those facing smaller budgets consume fewer drugs and die more: 0.0164 percentage points per month (13.9%) for each $100 per month budget decrease (24.4%). The mortality effect is traced entirely to cutbacks in life-saving medicines. High-risk patients cut back more than low-risk patients on the drugs that would benefit them the most. Only one-third of surveyed 65-year-olds believe that missing their drugs for up to a month could have any serious consequences. Cost-sharing policies cause patients to miss opportunities to buy health at very low cost ($11,321 per life-year).",
+    "reaction": "- I think this is a nice evaluation, getting at optimal price/market design questions where it is not trivial to think about what we should optimize for (efficiency/health/a combination?)"
+  },
+  {
+    "id": 19,
+    "title": "Heterogeneity in School Value Added and the Private Premium",
+    "abstract": "We estimate and validate test score-based measures of school quality (school value added, or SVA) in Pakistan. We document substantial variation in SVA within villages and within the public and private sectors, leading to a wide range of possible estimates of the private premium. The annualized difference in learning between the best and worst performing school in the same village is 0.4 standard deviations; compounded over five years of primary schooling, this difference is similar in size to the test score gap between low- and high-income countries. Students learn more in private schools (0.15 sd per year on average), but substantial within-sector variation in quality means that the effects of reallocating students from public to private schools can range from -0.35 sd to +0.65 sd. Heterogeneity in parental demand for quality helps explain both the evolution of the market over time and cross-market variation in school quality. The supply side responds to parental demand for quality in the private sector, but there is no evidence it does so in the public sector.",
+    "reaction": "- This is a paper which I do not like, because there is no conceptual point whatsoever\nÐ Ok, they have great data, and the results are relevant for policy evaluation, but this is in no way creative or clever"
+  },
+  {
+    "id": 20,
+    "title": "Targeting Precision Medicine: Evidence from Prenatal Screening",
+    "abstract": "This paper examines the introduction of a noninvasive prenatal screeningÑcell-free DNA (cfDNA) screeningÑwhich is used to target a more costly invasive test that elevates miscarriage risk. Using Swedish administrative data, we document that coverage of cfDNA substantially increases cfDNA screening and reduces invasive testing. We develop and estimate a stylized model of prenatal choices. We find that narrow targeting of cfDNA coverage can improve outcomes and reduce costs, while broader coverage also improves outcomes but with increased costs. These findings point to the potential gains from well-designed targeting of screening but at the same time highlight the importance of the targeting design.",
+    "reaction": "- Policy targeting is an interesting domain\n- Great data and gives us insights into design questions of overall importance. I would say this paper is good."
+  },
+  {
+    "id": 21,
+    "title": "CAN POLLUTION MARKETS WORK IN DEVELOPING COUNTRIES? EXPERIMENTAL EVIDENCE FROM INDIA",
+    "abstract": "Market-based environmental regulations are seldom used in low-income countries, where pollution is highest but state capacity is often low. This article collaborates with the Gujarat Pollution Control Board (GPCB) to design and experimentally evaluate the world's first particulate-matter emissions market, which covered industrial plants in a large Indian city. The market functioned well: treatment plants randomly assigned to the emissions market traded permits to become significant net sellers or buyers. After trading, treatment plants held enough permits to cover their emissions 99% of the time, compared with just 66% compliance with standards under the command-and-control status quo. Treatment plants reduced pollution emissions, relative to control plants, by 20%Ð30%. The market reduced abatement costs by an estimated 11%, holding constant emissions. The combination of pollution reductions and low costs imply that the emissions market has mortality benefits that exceed its costs by at least 25 times.",
+    "reaction": "- This is a great paper because they empirically test one of the most important policies discussed right now: carbon pricing\nÐ So although not super conceptually deep, we were in desparate need of these numbers, making this extremely relevant"
+  },
+  {
+    "id": 22,
+    "title": "Leaders in Social Movements: Evidence from Unions in Myanmar",
+    "abstract": "Social movements are catalysts for crucial institutional changes. To succeed, they must coordinate members' views (consensus building) and actions (mobilization). We study union leaders within Myanmar's burgeoning labor movement. Union leaders are positively selected on both ability and personality traits that enable them to influence others, yet they earn lower wages. In group discussions about workers' views on an upcoming national minimum wage negotiation, randomly embedded leaders build consensus around the union's preferred policy. In an experiment that mimics individuals decision-making in a collective action setup, leaders increase mobilization through coordination.",
+    "reaction": "- This is a classical paper which has no real punchline - you could not explain at a party what you are really doing and for what this is useful. I hate this"
+  },
+  {
+    "id": 23,
+    "title": "Looming Large or Seeming Small? Attitudes Towards Losses in a Representative Sample",
+    "abstract": "We measure individual-level loss aversion using three incentivized, representative surveys of the U.S. population (combined N = 3,000). We find that around 50% of the U.S. population is loss tolerant Ð they are willing to accept negative-expected-value gambles that contain a loss. This is counter to expert predictions and earlier findings which mostly come from lab/student samples that 70-90% of participants are loss averse. Consistent with the different findings in our study versus the prior literature, loss aversion is more prevalent in people with high cognitive ability. Further, our measure of gain-loss attitudes exhibits similar temporal stability and better predictive power outside our survey than measures of risk aversion.",
+    "reaction": "- This takes one of the given behavioral traits in the economics literature and shows it is wrong\n- This is an influential paper because of the outcome\n- I think it is ok, in the end they ran a lot of expensive experiments for getting at this point"
+  },
+  {
+    "id": 24,
+    "title": "A Model of Populism as a Conspiracy Theory",
+    "abstract": "This paper models populism as the dissemination of a false \"alternative reality,\" according to which the intellectual elite conspires against the populist for purely ideological reasons. If enough voters are receptive to it, this alternative realityÑby discrediting the elite's truthful messageÑreduces political accountability. Elite criticism, because it is more consistent with the alternative reality, strengthens receptive voters' support for the populist. Alternative realities are endogenously conspiratorial to resist evidence better. Populists, to leverage or strengthen beliefs in the alternative reality, enact harmful policies that may disproportionately harm the non-elite.",
+    "reaction": "- I do not like these papers, because they have a political economy model (which is always wrong and these models are never good enough to really make predictions, they only show mechanisms)\n- And I could think of 1000 reasons why the predictions of the model do not hold\nÐ Do not understand why this stuff is useful"
+  },
+  {
+    "id": 25,
+    "title": "VALUING THE TIME OF THE SELF-EMPLOYED",
+    "abstract": "People's value of their own time is a key input in public policy evaluations Ð these evaluations should account for time taken away from work or leisure as a result of policy. Measuring this value for the self-employed is challenging, as, by definition, it is not priced by the market. Using rich choice data collected from farming households in western Kenya, we show that households exhibit non-transitive preferences. As a result, neither market wages nor standard valuation techniques correctly measure participants' value of time. Using a structural model, we identify the behavioral wedges in participants' choices, and find that distortions appear when households exchange cash either for time or for goods. Our model estimates suggest that valuing the time of the self-employed at 60% of the market wage is a reasonable rule of thumb.",
+    "reaction": "- I think this gets at a quite fundamental measurement challenge, making this a very relevant point\n- Thinking about values which are hard to measure is promising and nice, I like this"
+  },
+  {
+    "id": 26,
+    "title": "Consumer Surplus of Alternative Payment Methods",
+    "abstract": "The authors estimate the private benefits for Uber riders from using alternative payment methods, focusing on Mexico where riders have the option to use cash or credit cards to pay for rides. They use three field experiments involving approximately 400,000 riders to estimate the loss of private benefits for riders if a ban on cash payments is implemented. Uber riders, using cash as means of payment either sometimes or exclusively, suffer an average loss of approximately 50% of their expenditures on trips paid in cash before the ban. The magnitude of these estimates reflects the intensity with which cash is used in the application, the shape of the demand curve for Uber rides, and the imperfect substitutability across means of payments.",
+    "reaction": "- This is such an obvious thing. Changing from cash to no-cash, I think a 10 year old could predict the conclusions\n- Do not understand how this really contributes"
+  },
+  {
+    "id": 27,
+    "title": "Digital Distractions with Peer Influence: The Impact of Mobile App Usage on Academic and Labor Market Outcomes",
+    "abstract": "Concerns about excessive mobile phone use among youth are mounting. The study presents estimates of both behavioral and contextual peer effects, along with comprehensive evidence on how students' own and their peers' app usage affect academic performance, physical health, and labor market outcomes. The analysis draws on administrative data from a Chinese university covering three student cohorts over four years. The researchers exploit random roommate assignments, differential exposure to a policy shock (gaming restrictions for minors), and differential exposure to a discrete event (the introduction of a blockbuster video game) for identification. Key findings include: App usage is contagious: a one standard deviation increase in roommates' in-college app usage raises own usage by 5.8%. High app usage is harmful across all measured outcomes. A one standard deviation increase in app usage reduces GPAs by 36.2% of a within-cohort-major standard deviation and lowers wages by 2.3%.",
+    "reaction": "- This paper is great because of its awesome data\n- Results are shocking and extremely policy relevant\n- From a design perspective, not super clever or creative"
+  },
+  {
+    "id": 28,
+    "title": "Consumer Responses to Disclosing AI Involvement in Content Creation: A Field Experiment on Social Media",
+    "abstract": "This study presents the first field experiment on social media examining consumer responses to disclosure of ChatGPT-generated and Human-ChatGPT collaborative content. The study examines the impact of disclosing the use of AI in product marketing on user engagement and purchase intention, using both within-subject and between-subject experimental designs on Weibo, supplemented with a follow-up survey experiment.",
+    "reaction": "- do not like this paper at all\n- No theoretical framework or conceptual depth - constructs like \"curiosity\" and \"preference\" invoked descriptively without embedding in consumer behavior theory. \n- These disclosure things are some experimental thing which seems to have not super strong external validity, I prefer designs with other outcomes"
+  },
+  {
+    "id": 29,
+    "title": "Algorithmic Recommendations and Human Discretion",
+    "abstract": "Human decision-makers frequently override the recommendations generated by predictive algorithms, but it is unclear whether these discretionary overrides add valuable private information or reintroduce the human biases and mistakes that motivated the adoption of the algorithms in the first place. We develop new quasi-experimental tools to measure the impact of human discretion over an algorithm on the accuracy of decisions, even when the outcome of interest is only selectively observed, in the context of bail decisions. We find that 90% of the judges in our setting underperform the algorithm when making a discretionary override, with most judges making override decisions that are no better than random. Yet the remaining 10% of judges outperform the algorithm in terms of both accuracy and fairness when making a discretionary override.",
+    "reaction": "- Paper likely to have high impact, one of the earliest on human-AI collaboration. Recommends publication."
+  },
+  {
+    "id": 30,
+    "title": "Political Representation Gaps",
+    "abstract": "This paper is a descriptive account of political attitudes of politicians and citizens. Using (i) a cross-sectional dataset covering the EU and (ii) longitudinal German data from 2009-2021, the central finding is a cultural representation gap: Politicians have similar economic attitudes as the mean voter, but are substantially more left-leaning on cultural issues. This holds across nearly all countries and socio-economic subgroups, replicated with Swiss referendum data.",
+    "reaction": "- Really like the motivation - far-right populism is omnipresent and not well understood. Very rigorous descriptive analysis documenting an important stylized fact. The analysis is thorough and convincing - as good as a descriptive paper can be."
+  },
+  {
+    "id": 31,
+    "title": "Mispricing Narratives After Social Unrest",
+    "abstract": "We examine how negative sentiment around an industry impacts beliefs and behaviors, focusing on demands for racial justice after the murder of George Floyd and the salience of the 'defund the police' movement. We assess stakeholder beliefs on the impact of protests on the stock prices of police-affiliated firms. In our survey experiment, laypeople and finance professionals predicted more negative stock price outcomes when they lacked details on the products supplied by such firms. Turning to real-life behavior, we find that mutual funds exposed to protests were 20% less likely to hold police stocks after the protests.",
+    "reaction": "MAJOR ISSUES: (1) Survey experiment lacks a clear hypothesis - sits between information processing, policy prediction, and financial asset valuation without addressing any in detail. Cannot distinguish whether participants' wrong predictions are due to wrong policy beliefs or wrong understanding of stock markets. (5) Contribution not nearly significant enough for Top-5. Recommend REJECT."
+  }
+]
