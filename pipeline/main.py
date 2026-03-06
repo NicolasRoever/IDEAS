@@ -12,8 +12,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-from pipeline.generator import generate_seeds
-from pipeline.free_filter import filter_seeds
+from pipeline.generator import generate_seeds, load_directions
 from pipeline.taste_judge import judge_seeds
 from pipeline.novelty_checker import check_novelty
 from pipeline.cost_tracker import CostTracker
@@ -21,10 +20,6 @@ from pipeline.cost_tracker import CostTracker
 
 def load_config(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
-
-
-def load_taste_profile(path: Path) -> list[dict]:
-    return json.loads(path.read_text())
 
 
 def load_research_vision(path: Path) -> str:
@@ -65,6 +60,7 @@ def generate_report(seeds: list[dict]) -> str:
         lines.append(f"**Question:** {seed['question']}")
         lines.append(f"**Key insight:** {seed['insight']}")
         lines.append(f"**Identification:** {seed.get('identification', '')}")
+        lines.append(f"**Fit score:** {seed.get('taste_probability', '')}/100")
         lines.append(f"**Why this fits you:** {seed.get('taste_reasoning', '')}")
         lines.append(f"**Biggest risk:** {seed.get('taste_risk', '')}")
         lines.append(f"**Novelty:** {novelty_line}")
@@ -113,8 +109,9 @@ def main():
         sys.exit(1)
     os.environ["ANTHROPIC_API_KEY"] = anthropic_key
 
-    taste_profile = load_taste_profile(ROOT / "inputs" / "taste_profile.json")
     research_vision = load_research_vision(ROOT / "inputs" / "research_vision.md")
+    paper_reactions = (ROOT / "inputs" / "paper_reactions.md").read_text()
+    directions = load_directions(ROOT / "inputs" / "directions.md")
 
     run_dir, run_id = next_run_dir(ROOT / "output")
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -125,25 +122,17 @@ def main():
 
     # Stage 1: Generate seeds
     print("=== Stage 1: Generating seeds ===")
-    raw_seeds = generate_seeds(research_vision, taste_profile, config, tracker)
+    raw_seeds = generate_seeds(research_vision, directions, config, tracker)
     write_json(raw_seeds, run_dir / "seeds_raw.json")
     print(f"Generated {len(raw_seeds)} seeds\n")
 
-    # Stage 1b: Free filter (Gemini)
-    print("=== Stage 1b: Free filter ===")
-    filtered_seeds = filter_seeds(raw_seeds, config)
-    write_json(filtered_seeds, run_dir / "seeds_free_filtered.json")
-    filter_threshold = config["free_filter"]["score_threshold"]
-    pre_judging = [s for s in filtered_seeds if s["filter_score"] > filter_threshold]
-    print(f"Passed free filter: {len(pre_judging)}/{len(raw_seeds)} seeds\n")
-
     # Stage 2: Taste judging
     print("=== Stage 2: Taste judging ===")
-    scored_seeds = judge_seeds(pre_judging, research_vision, taste_profile, config, tracker)
+    scored_seeds = judge_seeds(raw_seeds, research_vision, paper_reactions, config, tracker)
     write_json(scored_seeds, run_dir / "seeds_scored.json")
     score_threshold = config["judging"]["score_threshold"]
     max_survivors = config["judging"]["max_survivors"]
-    survivors = [s for s in scored_seeds if s["taste_score"] >= score_threshold][:max_survivors]
+    survivors = [s for s in scored_seeds if s["taste_probability"] >= score_threshold][:max_survivors]
     print(f"Passed taste filter: {len(survivors)}/{len(scored_seeds)} seeds\n")
 
     # Stage 3: Novelty check
@@ -161,7 +150,6 @@ def main():
     finished_at = datetime.now(timezone.utc)
     stage_stats = {
         "seeds_generated": len(raw_seeds),
-        "seeds_passed_free_filter": len(pre_judging),
         "seeds_passed_taste": len(survivors),
         "seeds_passed_novelty": len(final_seeds),
         "top_n": min(len(final_seeds), config["output"]["top_n"]),
@@ -170,8 +158,7 @@ def main():
 
     print(
         f"\nGenerated {len(raw_seeds)} seeds → "
-        f"{len(pre_judging)} passed free filter → "
-        f"{len(survivors)} passed taste filter → "
+        f"{len(survivors)} passed taste filter (≥{score_threshold}) → "
         f"{len(final_seeds)} passed novelty → "
         f"top {stage_stats['top_n']} in report.md"
     )

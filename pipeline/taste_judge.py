@@ -1,58 +1,51 @@
-"""Stage 2: Score each seed against the full taste profile."""
+"""Stage 2: Score each seed against the taste profile (paper_reactions.md)."""
 
 import re
 import anthropic
 from pipeline.cost_tracker import CostTracker
 
 
-def _format_taste_profile(taste_profile: list[dict]) -> str:
-    lines = []
-    for p in taste_profile:
-        lines.append(f"[{p['id']}] {p['title']}")
-        lines.append(f"Abstract: {p['abstract']}")
-        lines.append(f"Reaction: {p['reaction']}")
-        lines.append("")
+def _format_seed(seed: dict) -> str:
+    lines = [
+        f"TITLE: {seed['title']}",
+        f"QUESTION: {seed['question']}",
+        f"INSIGHT: {seed['insight']}",
+        f"EMPIRICAL DESIGN: {seed.get('empirical_data', seed.get('identification', ''))}",
+    ]
+    if seed.get("killer_question"):
+        lines.append(f"KILLER QUESTION: {seed['killer_question']}")
     return "\n".join(lines)
 
 
-def _format_seed(seed: dict) -> str:
-    return (
-        f"TITLE: {seed['title']}\n"
-        f"QUESTION: {seed['question']}\n"
-        f"INSIGHT: {seed['insight']}\n"
-        f"EMPIRICAL DATA: {seed.get('empirical_data', seed.get('identification', ''))}"
-    )
-
-
 def _parse_judgment(text: str) -> tuple[int, str, str]:
-    """Extract SCORE, REASONING, RISK from judgment response."""
-    score = 0
+    """Extract PROBABILITY, REASONING, RISK from judgment response."""
+    probability = 0
     reasoning = ""
     risk = ""
 
-    score_match = re.search(r'SCORE:\s*(\d)', text, re.IGNORECASE)
-    if score_match:
-        score = int(score_match.group(1))
+    prob_match = re.search(r'PROBABILITY:\s*(\d+)', text, re.IGNORECASE)
+    if prob_match:
+        probability = min(100, max(0, int(prob_match.group(1))))
 
     reasoning_match = re.search(
-        r'REASONING:\s*(.+?)(?=\n(?:RISK|SCORE)|$)', text, re.IGNORECASE | re.DOTALL
+        r'REASONING:\s*(.+?)(?=\n(?:RISK|PROBABILITY)|$)', text, re.IGNORECASE | re.DOTALL
     )
     if reasoning_match:
         reasoning = reasoning_match.group(1).strip()
 
     risk_match = re.search(
-        r'RISK:\s*(.+?)(?=\n(?:REASONING|SCORE)|$)', text, re.IGNORECASE | re.DOTALL
+        r'RISK:\s*(.+?)(?=\n(?:REASONING|PROBABILITY)|$)', text, re.IGNORECASE | re.DOTALL
     )
     if risk_match:
         risk = risk_match.group(1).strip()
 
-    return score, reasoning, risk
+    return probability, reasoning, risk
 
 
 def judge_seeds(
     seeds: list[dict],
     research_vision: str,
-    taste_profile: list[dict],
+    paper_reactions: str,
     config: dict,
     tracker: CostTracker,
     verbose: bool = True,
@@ -63,15 +56,14 @@ def judge_seeds(
     score_threshold = config["judging"]["score_threshold"]
     max_survivors = config["judging"]["max_survivors"]
 
-    taste_profile_text = _format_taste_profile(taste_profile)
+    system_msg = f"""You are a research taste evaluator for a specific economist.
+Your job: given a research idea seed, estimate the probability (0-100) that this
+researcher would actually pursue this paper — meaning both that they find it
+personally exciting AND that it has realistic top-5 journal potential (AER, QJE,
+JPE, REStud, Econometrica).
 
-    system_msg = f"""You are evaluating research idea seeds for a specific economist. Your job is to predict whether they would find an idea exciting enough to pursue.
-
-Here is their research vision:
-{research_vision}
-
-Here are 30+ papers they have rated, with their unfiltered reactions:
-{taste_profile_text}"""
+Here is their detailed taste profile, derived from reactions to ~30 papers:
+{paper_reactions}"""
 
     scored_seeds = []
 
@@ -81,14 +73,14 @@ Here are 30+ papers they have rated, with their unfiltered reactions:
 
         seed_text = _format_seed(seed)
 
-        user_msg = f"""Now evaluate this idea seed:
+        user_msg = f"""Evaluate this research idea seed:
 
 {seed_text}
 
-Respond with:
-- SCORE: 1-5 (1 = they would find this boring/generic, 5 = they would be genuinely excited)
-- REASONING: 2-3 sentences explaining why this researcher specifically would or wouldn't like this idea. Reference their taste profile where relevant.
-- RISK: The single biggest reason this idea might not work or might not be interesting."""
+Respond with exactly:
+PROBABILITY: [0-100 integer]
+REASONING: [2-3 sentences: why this researcher specifically would or wouldn't pursue this. Reference their taste profile. Address both personal taste and top-5 potential.]
+RISK: [The single biggest reason this idea would not make it — either the researcher wouldn't find it exciting enough, or it's not top-5 material.]"""
 
         response = client.messages.create(
             model=model,
@@ -99,7 +91,11 @@ Respond with:
 
         tracker.record("judging", model, response.usage.input_tokens, response.usage.output_tokens)
         raw_text = response.content[0].text
-        score, reasoning, risk = _parse_judgment(raw_text)
+        probability, reasoning, risk = _parse_judgment(raw_text)
+
+        if verbose:
+            status = "PASS" if probability >= score_threshold else "FAIL"
+            print(f"    Probability: {probability} → {status}")
 
         scored_seed = {
             "id": seed["id"],
@@ -108,16 +104,16 @@ Respond with:
             "question": seed["question"],
             "insight": seed["insight"],
             "identification": seed.get("empirical_data", seed.get("identification", "")),
-            "taste_score": score,
+            "taste_probability": probability,
             "taste_reasoning": reasoning,
             "taste_risk": risk,
         }
         scored_seeds.append(scored_seed)
 
-    scored_seeds.sort(key=lambda x: x["taste_score"], reverse=True)
+    scored_seeds.sort(key=lambda x: x["taste_probability"], reverse=True)
 
     if verbose:
-        n_pass = sum(1 for s in scored_seeds if s["taste_score"] >= score_threshold)
-        print(f"  {n_pass}/{len(seeds)} seeds passed taste filter (score >= {score_threshold})")
+        n_pass = sum(1 for s in scored_seeds if s["taste_probability"] >= score_threshold)
+        print(f"  {n_pass}/{len(seeds)} seeds passed taste filter (probability >= {score_threshold})")
 
     return scored_seeds

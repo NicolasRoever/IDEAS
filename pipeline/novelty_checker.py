@@ -41,6 +41,7 @@ def _search_openalex(query: str, per_page: int = 5, mailto: str = "research@exam
         "mailto": mailto,
     }
 
+    data = None
     for attempt in range(3):
         try:
             resp = requests.get(OPENALEX_BASE, params=params, timeout=15)
@@ -54,6 +55,9 @@ def _search_openalex(query: str, per_page: int = 5, mailto: str = "research@exam
             if attempt == 2:
                 return []
             time.sleep(1)
+
+    if data is None:
+        return []
 
     papers = []
     for work in data.get("results", []):
@@ -207,8 +211,8 @@ def check_novelty(
         }
         final_seeds.append(final_seed)
 
-    # Sort by taste score, keep top N
-    final_seeds.sort(key=lambda x: x["taste_score"], reverse=True)
+    # Sort by taste probability, keep top N
+    final_seeds.sort(key=lambda x: x.get("taste_probability", 0), reverse=True)
     final_seeds = final_seeds[:top_n]
 
     if verbose:

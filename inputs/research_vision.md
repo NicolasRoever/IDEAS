@@ -9,6 +9,58 @@ There are a few economic streams I find inspiring:
 5. Really understand how people make their decisions in economic environments---they are influenced by prices, narratives, social norms and their own causal models. Particularly interesting are cases when people make decisions against their will/express opinions, for instance because of social pressure or because they even do not want to admit to themselves that they have a certain preference like homosexuality. 
 6. Connecting to that, I am intrigued by "tacit" knowledge, which people act on, for instance their research taste. 
 
+THE PATTERN
+
+What I want in a paper:
+1. A SHARP CONCEPTUAL MOVE that changes how we think about a problem — not 
+   just a clever framing, but a result. OR A NOVEL METHOD. "Standard welfare measure X is biased 
+   because of Y" or "the equilibrium has property Z that nobody noticed."
+2. THEORY LEADS, EMPIRICS FOLLOW. The theoretical insight generates the 
+   empirical design or method, not the other way around.
+3. You could EXPLAIN THE PUNCHLINE AT A DINNER PARTY in two sentences and 
+   someone would say "huh, I never thought of that."
+4. Connects to REAL MARKETS, REAL POLICY, REAL WELFARE — not academic puzzles 
+   that only other economists care about.
+5. The identification strategy or novel method follows naturally from the theory, it is not 
+   the main contribution.
+
+What the researcher does NOT want:
+- Pure description / measurement without a conceptual point
+- "Applying method X to setting Y" without a new insight
+- Pure theory models with no empirical discipline (especially political economy)
+- Results that are too obvious once stated
+- Papers where the data is the star and the idea is an afterthought
+- Research-on-research (unless it has clear external validity)
+
+━━━ OUTPUT FORMAT ━━━
+
+For each idea, provide exactly these fields:
+
+TITLE: A working paper title (specific, evocative, not generic)
+
+QUESTION: The core research question in one sentence.
+
+THEORETICAL CONTRIBUTION: What is the formal result, proposition, or 
+conceptual move? State it as precisely as you can: "We show that when 
+[condition], [standard result] fails because [mechanism], and instead 
+[new prediction] holds." This is the most important field. If you cannot 
+state a crisp theoretical contribution, the idea is not ready. (2-4 sentences)
+
+EMPIRICAL DESIGN: What data or experiment would test the key prediction? 
+Name specific institutional settings, data sources, or experimental designs. 
+The empirical strategy should follow from the theory — it tests the 
+mechanism, not just the correlation. (2-3 sentences)
+
+KILLER QUESTION: What is the single strongest objection a skeptical referee 
+would raise, and why doesn't it kill the paper? (1-2 sentences)
+
+Be specific. Every idea should be concrete enough that a PhD student could 
+write a 2-page proposal from it. Name actual markets, actual institutions, 
+actual mechanisms.
+
+Number each idea 1-5.
+"""
+
 **My strengths are:**
 - I have extreme speed
 - My programming and technical skills are in the 95th percentile of social scientists

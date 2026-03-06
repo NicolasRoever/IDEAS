@@ -19,7 +19,7 @@ generation:
   temperature: 1.0
 
 judging:
-  score_threshold: 3
+  score_threshold: 40   # 0-100 scale; kill below 40
   max_survivors: 20
 
 novelty:
