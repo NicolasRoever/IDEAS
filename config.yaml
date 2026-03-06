@@ -1,11 +1,17 @@
+version: "0.1.0"
+
 model_routing:
   generation: "claude-opus-4-6"
-  judging: "claude-opus-4-6"
-  refinement: "claude-opus-4-6"
+  free_filter: "gemini-3.1-flash-lite-preview"
+  judging: "claude-sonnet-4-6"
   novelty: "claude-sonnet-4-6"
 
 api_key_env: "ANTHROPIC_API_KEY"
+google_api_key_env: "GOOGLE_API_KEY"
 openalex_api_key_env: "OPENALEX_API_KEY"
+
+free_filter:
+  score_threshold: 2  # kill if score <= this (i.e. pass if score >= 3)
 
 generation:
   num_seeds: 50

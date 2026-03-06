@@ -114,12 +114,10 @@ Respond with:
         }
         scored_seeds.append(scored_seed)
 
-    # Filter and sort
-    survivors = [s for s in scored_seeds if s["taste_score"] >= score_threshold]
-    survivors.sort(key=lambda x: x["taste_score"], reverse=True)
-    survivors = survivors[:max_survivors]
+    scored_seeds.sort(key=lambda x: x["taste_score"], reverse=True)
 
     if verbose:
-        print(f"  {len(survivors)}/{len(seeds)} seeds passed taste filter (score >= {score_threshold})")
+        n_pass = sum(1 for s in scored_seeds if s["taste_score"] >= score_threshold)
+        print(f"  {n_pass}/{len(seeds)} seeds passed taste filter (score >= {score_threshold})")
 
-    return survivors
+    return scored_seeds

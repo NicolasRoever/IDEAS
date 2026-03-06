@@ -3,17 +3,17 @@
 import json
 import os
 import sys
-from datetime import date
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
 from dotenv import load_dotenv
 
-# Allow running as: python pipeline/run.py from IDEAS/ root
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 from pipeline.generator import generate_seeds
+from pipeline.free_filter import filter_seeds
 from pipeline.taste_judge import judge_seeds
 from pipeline.novelty_checker import check_novelty
 from pipeline.cost_tracker import CostTracker
@@ -34,6 +34,19 @@ def load_research_vision(path: Path) -> str:
 def write_json(data, path: Path):
     path.write_text(json.dumps(data, indent=2))
     print(f"  Wrote {path}")
+
+
+def next_run_dir(output_root: Path) -> tuple[Path, str]:
+    """Return (run_dir, run_id) for the next sequential run, e.g. run_0001."""
+    output_root.mkdir(parents=True, exist_ok=True)
+    existing = [
+        int(p.name.split("_")[1])
+        for p in output_root.iterdir()
+        if p.is_dir() and p.name.startswith("run_") and p.name.split("_")[1].isdigit()
+    ]
+    next_id = max(existing, default=0) + 1
+    run_id = f"{next_id:04d}"
+    return output_root / f"run_{run_id}", run_id
 
 
 def generate_report(seeds: list[dict]) -> str:
@@ -60,10 +73,37 @@ def generate_report(seeds: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def write_summary(
+    path: Path,
+    run_id: str,
+    config: dict,
+    started_at: datetime,
+    finished_at: datetime,
+    stage_stats: dict,
+    tracker: CostTracker,
+) -> None:
+    duration_seconds = (finished_at - started_at).total_seconds()
+    summary = {
+        "run_id": run_id,
+        "version": config.get("version", "unknown"),
+        "date": started_at.strftime("%Y-%m-%d"),
+        "started_at": started_at.isoformat(),
+        "finished_at": finished_at.isoformat(),
+        "duration_seconds": round(duration_seconds, 1),
+        "config": config,
+        "stage_stats": stage_stats,
+        "cost": {
+            "by_stage": tracker.by_stage(),
+            "total_usd": round(tracker.total_cost(), 6),
+        },
+    }
+    path.write_text(json.dumps(summary, indent=2))
+    print(f"  Wrote {path}")
+
+
 def main():
     load_dotenv(ROOT / ".env")
 
-    # Set API keys from env vars
     config_path = ROOT / "config.yaml"
     config = load_config(config_path)
 
@@ -73,56 +113,69 @@ def main():
         sys.exit(1)
     os.environ["ANTHROPIC_API_KEY"] = anthropic_key
 
-    # Load inputs
     taste_profile = load_taste_profile(ROOT / "inputs" / "taste_profile.json")
     research_vision = load_research_vision(ROOT / "inputs" / "research_vision.md")
 
-    # Create output directory
-    batch_dir = ROOT / "output" / f"batch_{date.today().isoformat()}"
-    batch_dir.mkdir(parents=True, exist_ok=True)
-    print(f"Output directory: {batch_dir}\n")
+    run_dir, run_id = next_run_dir(ROOT / "output")
+    run_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Run ID: {run_id}  →  {run_dir}\n")
 
     tracker = CostTracker()
+    started_at = datetime.now(timezone.utc)
 
     # Stage 1: Generate seeds
     print("=== Stage 1: Generating seeds ===")
     raw_seeds = generate_seeds(research_vision, taste_profile, config, tracker)
-    write_json(raw_seeds, batch_dir / "seeds_raw.json")
+    write_json(raw_seeds, run_dir / "seeds_raw.json")
     print(f"Generated {len(raw_seeds)} seeds\n")
+
+    # Stage 1b: Free filter (Gemini)
+    print("=== Stage 1b: Free filter ===")
+    filtered_seeds = filter_seeds(raw_seeds, config)
+    write_json(filtered_seeds, run_dir / "seeds_free_filtered.json")
+    filter_threshold = config["free_filter"]["score_threshold"]
+    pre_judging = [s for s in filtered_seeds if s["filter_score"] > filter_threshold]
+    print(f"Passed free filter: {len(pre_judging)}/{len(raw_seeds)} seeds\n")
 
     # Stage 2: Taste judging
     print("=== Stage 2: Taste judging ===")
-    scored_seeds = judge_seeds(raw_seeds, research_vision, taste_profile, config, tracker)
-    write_json(scored_seeds, batch_dir / "seeds_scored.json")
-    print(f"Passed taste filter: {len(scored_seeds)} seeds\n")
+    scored_seeds = judge_seeds(pre_judging, research_vision, taste_profile, config, tracker)
+    write_json(scored_seeds, run_dir / "seeds_scored.json")
+    score_threshold = config["judging"]["score_threshold"]
+    max_survivors = config["judging"]["max_survivors"]
+    survivors = [s for s in scored_seeds if s["taste_score"] >= score_threshold][:max_survivors]
+    print(f"Passed taste filter: {len(survivors)}/{len(scored_seeds)} seeds\n")
 
     # Stage 3: Novelty check
     print("=== Stage 3: Novelty check ===")
-    final_seeds = check_novelty(scored_seeds, config, tracker)
-    write_json(final_seeds, batch_dir / "seeds_final.json")
+    final_seeds = check_novelty(survivors, config, tracker)
+    write_json(final_seeds, run_dir / "seeds_final.json")
     print(f"Passed novelty check: {len(final_seeds)} seeds\n")
 
-    # Generate report
+    # Report
     print("=== Generating report ===")
-    report_text = generate_report(final_seeds)
-    report_path = batch_dir / "report.md"
-    report_path.write_text(report_text)
-    print(f"  Wrote {report_path}")
-
-    # Cost summary
-    cost_summary = tracker.summary()
-    (batch_dir / "cost.json").write_text(
-        __import__("json").dumps({"records": tracker.records, "total_usd": tracker.total_cost()}, indent=2)
-    )
+    (run_dir / "report.md").write_text(generate_report(final_seeds))
+    print(f"  Wrote {run_dir / 'report.md'}")
 
     # Summary
+    finished_at = datetime.now(timezone.utc)
+    stage_stats = {
+        "seeds_generated": len(raw_seeds),
+        "seeds_passed_free_filter": len(pre_judging),
+        "seeds_passed_taste": len(survivors),
+        "seeds_passed_novelty": len(final_seeds),
+        "top_n": min(len(final_seeds), config["output"]["top_n"]),
+    }
+    write_summary(run_dir / "summary.json", run_id, config, started_at, finished_at, stage_stats, tracker)
+
     print(
         f"\nGenerated {len(raw_seeds)} seeds → "
-        f"{len(scored_seeds)} passed taste filter → "
+        f"{len(pre_judging)} passed free filter → "
+        f"{len(survivors)} passed taste filter → "
         f"{len(final_seeds)} passed novelty → "
-        f"top {min(len(final_seeds), config['output']['top_n'])} in report.md"
+        f"top {stage_stats['top_n']} in report.md"
     )
-    print(f"\n{cost_summary}")
+    print(f"\n{tracker.summary()}")
 
 
 if __name__ == "__main__":
