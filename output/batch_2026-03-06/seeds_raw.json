@@ -1,0 +1,402 @@
+[
+  {
+    "id": "seed_001",
+    "strategy": "mechanism_first",
+    "title": "The Lemons Problem in AI Therapy: How Unobservable Quality Drives Out Human Therapists",
+    "question": "Does the entry of AI therapy tools (like Bloit Inc.'s AI-psychotherapy) create an adverse selection spiral where high-quality human therapists exit the market because consumers cannot distinguish quality, while low-quality human therapists remain to compete on price with AI?",
+    "insight": "Akerlof's lemons mechanism has never been studied in a credentialing-heavy service market undergoing sudden technological disruption. The non-obvious part: AI doesn't just substitute for low-quality providers\u2014it destroys the signaling equilibrium that previously separated good from bad therapists, because AI compresses the perceived quality distribution. Consumers who can't tell good from bad therapy default to cheap AI, pushing out the best human therapists first (who have the highest outside options).",
+    "empirical_data": "Scrape therapist directories (Psychology Today, BetterHelp) longitudinally to track entry/exit of therapists by credentials and reviews, combined with state-level variation in AI therapy regulation; supplement with a discrete choice experiment on Prolific measuring willingness-to-pay for therapy as a function of AI disclosure and therapist signals.\n\n---"
+  },
+  {
+    "id": "seed_002",
+    "strategy": "mechanism_first",
+    "title": "Pluralistic Ignorance in Carbon Markets: Do Firms Pollute More Because They Think Competitors Won't Comply?",
+    "question": "Do firms in emissions trading schemes over-pollute not because abatement is too costly but because they misperceive the compliance intentions of other firms, paralleling the Saudi Arabia WWOH mechanism in an industrial context?",
+    "insight": "The Bursztyn et al. (2020) mechanism of misperceived social norms has only been applied to individual social behavior\u2014but it should operate powerfully among firms in nascent pollution markets (like India's Gujarat ETS), where managers privately support compliance but assume competitors will cheat, rationalizing their own non-compliance. This would imply that information interventions about peer compliance could substitute for costly monitoring.",
+    "empirical_data": "Partner with GPCB or a similar pollution control board to run an RCT providing plant managers with accurate information about aggregate compliance rates of other firms; measure permit purchases, emissions, and elicited beliefs about peer behavior before and after treatment.\n\n---"
+  },
+  {
+    "id": "seed_003",
+    "strategy": "mechanism_first",
+    "title": "When Your Doctor Googles You: Reverse Information Asymmetry in Healthcare from Digital Footprints",
+    "question": "Does physician access to patients' publicly available social media data (lifestyle, diet, risk behaviors) improve health outcomes or exacerbate discrimination against patients who appear \"non-compliant\"?",
+    "insight": "Classic health economics assumes the patient holds private information about their own health behaviors (moral hazard). But digital footprints invert this: doctors can now observe what patients themselves may not realize they're revealing. The twist is that this doesn't straightforwardly reduce moral hazard\u2014it may create a chilling effect where patients strategically curate their online presence or avoid care, generating a new form of market unraveling.",
+    "empirical_data": "Use variation in hospital systems' adoption of social-media-monitoring tools (some US health systems have piloted \"social determinants of health\" data integration) with a difference-in-differences design on patient follow-up rates, treatment intensity, and health outcomes, stratified by patient demographics.\n\n---"
+  },
+  {
+    "id": "seed_004",
+    "strategy": "mechanism_first",
+    "title": "The Auction Nobody Wanted: Why Emergency Room Triage Is a Misdesigned Priority Queue",
+    "question": "Would replacing subjective ER triage (a priority queue with noisy signals) with a mechanism-design-inspired system where patients report their own pain/urgency under incentive-compatible elicitation improve welfare and reduce racial disparities in wait times?",
+    "insight": "ER triage is effectively a poorly designed allocation mechanism where the \"auctioneer\" (triage nurse) estimates values with massive noise and known racial bias. Mechanism design tells us we should elicit private information from the agents themselves\u2014but medicine has never framed this as a market design problem. The non-obvious claim is that a well-designed self-report mechanism with spot-checks could dominate expert assessment, especially for conditions where pain is the primary input.",
+    "empirical_data": "Run a field experiment in a partner hospital's ER comparing standard triage with an incentive-compatible self-report tool (e.g., patients choose between \"fast track with mandatory follow-up cost\" vs. \"standard wait\"), measuring wait times, re-admission rates, and demographic disparities.\n\n---"
+  },
+  {
+    "id": "seed_005",
+    "strategy": "mechanism_first",
+    "title": "Tacit Knowledge Markets: How Research Taste Propagates Through Advisor-Student Networks and Shapes Field Evolution",
+    "question": "Can we measure the \"tacit\" component of research taste\u2014the part that isn't explained by topic, method, or co-authorship\u2014and show that it propagates through advisor-student links with predictable decay, shaping which research programs thrive or die?",
+    "insight": "Economists act on research taste they cannot articulate (Polanyi's tacit knowledge), yet we model science as if ideas compete on merit alone. The key move is to use LLM embeddings of paper abstracts to construct a \"style\" residual after removing topic and method, then show this residual is heritable through advising chains. This would be the first empirical measurement of tacit knowledge transmission in any professional setting.",
+    "empirical_data": "Use the full NBER working paper corpus + ProQuest dissertation data to link advisor-advisee pairs; compute semantic embeddings (e.g., from GPT-4) of abstracts, regress on topic fixed effects and method indicators, then test whether the residual \"style vector\" correlates within advisor lineages using a gravity-style model with genealogical distance.\n\n---"
+  },
+  {
+    "id": "seed_006",
+    "strategy": "mechanism_first",
+    "title": "Product Market Traps in Education: Do Students Stay in Prestigious Programs They'd Prefer Not to Exist?",
+    "question": "Analogous to the Allcott et al. TikTok/Instagram collective trap, do students enrolled in elite-but-miserable degree programs (law, MBA, medicine) exhibit negative welfare when accounting for the externality that others' enrollment forces them to participate?",
+    "insight": "The \"collective trap\" framework from social media applies naturally to positional goods in education\u2014where the value of not having a credential is endogenous to how many peers hold one. The surprising prediction is that students in the most prestigious programs may have the most negative adjusted welfare, because the positional externality is strongest precisely where the credential is most valuable. This reframes the \"rat race\" as a measurable market failure.",
+    "empirical_data": "Run incentivized WTA/WTP experiments with students at a partner university (e.g., through PumpkinCareers' student consulting network) measuring: (a) private valuation of their own enrollment, (b) WTP for a world where the program doesn't exist for anyone, yielding Allcott-style adjusted surplus measures across programs.\n\n---"
+  },
+  {
+    "id": "seed_007",
+    "strategy": "mechanism_first",
+    "title": "The Causal Model Discount: Do Consumers Who Understand Why a Product Works Pay Less for Signaling Substitutes?",
+    "question": "When consumers acquire a correct causal model of why a product works (e.g., vitamins, skincare, organic food), do they substitute toward cheaper functional equivalents, and does this compress brand premia\u2014revealing that ignorance of mechanism is what sustains premium pricing?",
+    "insight": "Standard information economics focuses on quality uncertainty, but there's a deeper layer: uncertainty about *why* something works. A consumer who doesn't understand the mechanism behind \"organic\" or \"probiotic\" must rely on brand as a heuristic, paying a premium. Once the causal model is supplied, the brand premium should collapse\u2014but only for products where the mechanism is simple enough to internalize. This predicts heterogeneous effects by product complexity, which distinguishes it from standard disclosure results.",
+    "empirical_data": "Pre-register a large online experiment (N=3,000+) where participants receive mechanistic explanations (vs. placebo information) about product categories varying in causal complexity (Vitamin C vs. probiotic gut health vs. organic produce), then make incentivized purchase decisions from real product listings; measure brand premium compression.\n\n---"
+  },
+  {
+    "id": "seed_008",
+    "strategy": "mechanism_first",
+    "title": "Confessing to the Algorithm: Do People Reveal Stigmatized Preferences More Honestly to AI Than to Human Surveyors?",
+    "question": "Does replacing a human interviewer with an AI chatbot in sensitive survey contexts (sexual orientation, drug use, political extremism) reduce social desirability bias, and does this effect vary with respondents' beliefs about AI's capacity for judgment?",
+    "insight": "Survey methodology has long struggled with social desirability bias; list experiments and RRT are partial fixes. The non-obvious insight is that AI interviewers might function as a \"judgment-free\" elicitation device\u2014but only if respondents don't anthropomorphize the AI. This creates a testable interaction: the bias-reduction effect of AI should be largest for people who score lowest on AI anthropomorphism, completely inverting the naive prediction that people who \"trust\" AI more would reveal more.",
+    "empirical_data": "Run a between-subjects field experiment via Bloit Inc.'s AI-psychotherapy platform (or similar) randomizing whether sensitive intake questions are asked by a human therapist, an AI with humanlike avatar, or a clearly-labeled minimal AI interface; measure disclosure rates against validated benchmarks (e.g., known population base rates for substance use from biomarker studies).\n\n---"
+  },
+  {
+    "id": "seed_009",
+    "strategy": "mechanism_first",
+    "title": "Outside Options You Can't Take: How Phantom Alternatives Inflate Bargaining Power in Gig Platforms",
+    "question": "Do gig economy platforms (Uber, DoorDash) strategically display earnings information from alternative gigs that workers cannot practically access\u2014creating \"phantom outside options\" that paradoxically increase workers' subjective continuation value and reduce quit rates?",
+    "insight": "Standard bargaining theory (as in the Hwang paper) treats outside options as real. But platforms may exploit a behavioral wedge: showing workers that \"drivers in your area earn $X on Platform Y\" makes workers feel they have options, increasing their sense of control and reducing actual search\u2014the opposite of what a rational model predicts. This is a novel form of \"choice architecture as labor discipline\" that inverts the classical role of outside options.",
+    "empirical_data": "Collect screenshots of in-app notifications from gig workers (via a browser extension/survey panel of ~500 gig workers), link to GPS-based labor supply data and actual platform-switching behavior; exploit variation across cities in the availability of competing platforms to test whether \"phantom\" information (competitor info when no real competitor exists locally) reduces churn.\n\n---"
+  },
+  {
+    "id": "seed_010",
+    "strategy": "mechanism_first",
+    "title": "The Norm Entrepreneur's Dilemma: When Public Signals Backfire by Revealing the Distribution of Extremists",
+    "question": "Under what conditions does a public campaign to shift social norms (e.g., anti-corruption messaging, diversity pledges) backfire by inadvertently revealing that the \"extreme\" minority is larger than people thought, thereby licensing more extreme behavior?",
+    "insight": "Bursztyn et al. (2020) and the Saudi norms paper show that correcting misperceptions can shift behavior. But this logic has a dark mirror: a public campaign that accidentally reveals non-trivial support for an extreme position (e.g., \"30% of employees admitted to resume fraud\") can erode the very norm it tries to enforce\u2014by updating the inference that expressing/engaging in the behavior is less costly. The key move is formalizing the threshold at which \"awareness campaigns\" flip from norm-reinforcing to norm-eroding.",
+    "empirical_data": "Design a pre-registered experiment (N=2,500) on Prolific where participants in a workplace scenario receive anti-corruption messages with varying base rate information (\"5% vs. 15% vs. 30% of employees have engaged in X\"); measure both stated willingness to engage in the behavior and second-order beliefs about social sanctions, identifying the tipping point where disclosure backfires. Validate with archival data from corporate compliance campaigns that disclosed violation rates."
+  },
+  {
+    "id": "seed_011",
+    "strategy": "puzzle_first",
+    "title": "The Paradox of Abundant Choice in Therapy: Why AI Psychotherapy Users Recover Faster When Options Are Restricted",
+    "question": "Does limiting the menu of therapeutic approaches offered by AI psychotherapy tools (e.g., Bloit Inc.) improve patient outcomes compared to allowing patients to freely select or switch between modalities?",
+    "insight": "In traditional therapy, therapists act as gatekeepers who constrain the patient's choice set\u2014yet AI therapy platforms typically let users explore freely across CBT, DBT, psychodynamic approaches, etc. This mirrors a \"product market trap\" logic: the freedom to switch modalities may prevent the sustained discomfort necessary for therapeutic progress, creating a market where more choice destroys value. This is a case where market design (restricting choice) contradicts standard consumer sovereignty assumptions.",
+    "empirical_data": "Run a field experiment on Bloit Inc.'s platform randomizing users into restricted-choice (algorithm-assigned single modality for 8 weeks) vs. free-choice arms, tracking symptom inventories (PHQ-9, GAD-7), session completion rates, and revealed preference for continued use.\n\n---"
+  },
+  {
+    "id": "seed_012",
+    "strategy": "puzzle_first",
+    "title": "The Career Advice Paradox: Why Consulting-Track Students Systematically Undervalue Their Own Tacit Knowledge About Job Fit",
+    "question": "Do students seeking career consulting (e.g., via PumpkinCareers) possess private information about their own job fit that they systematically ignore in favor of prestige signals, and can structured elicitation recover this information to improve match quality?",
+    "insight": "Students often know\u2014tacitly\u2014which careers suit them, yet choose based on observable prestige rankings (a form of pluralistic ignorance about what peers actually value). This creates a \"lemons problem\" in labor matching: the highest-fit candidates for non-prestige paths self-select away. The key move is showing that a simple belief-elicitation protocol can surface tacit preferences that predict job satisfaction better than stated preferences.",
+    "empirical_data": "Partner with PumpkinCareers to implement a pre-advice elicitation survey (using indirect/list experiments to recover true preferences) and track 12-month post-placement satisfaction and turnover, comparing students whose placements align with tacit vs. stated preferences.\n\n---"
+  },
+  {
+    "id": "seed_013",
+    "strategy": "puzzle_first",
+    "title": "Dead Drugs Walking: How Patients' Causal Models of Their Own Illness Predict Medication Non-Adherence Better Than Price",
+    "question": "Do patients' folk causal models of disease mechanisms (e.g., \"my body builds tolerance\" or \"I only need medication when symptomatic\") explain more variance in drug non-adherence than out-of-pocket costs, even among those facing the Medicare Part D coverage gap?",
+    "insight": "The Einav et al. \"Health Costs of Cost Sharing\" paper shows cost-sharing kills\u2014but the finding that only one-third of patients believe missing drugs for a month matters suggests the binding constraint may not be price but causal beliefs. If patients' mental models of pharmacology are the first-order problem, then the optimal policy is information design, not subsidy design. This reframes a classic market failure (moral hazard/cost-sharing) as fundamentally an epistemic failure.",
+    "empirical_data": "Augment CMS Medicare Part D claims data with a survey measuring patients' causal models of their specific conditions (elicited via causal diagram tasks), then estimate heterogeneous treatment effects of the coverage gap on adherence/mortality as a function of causal model accuracy.\n\n---"
+  },
+  {
+    "id": "seed_014",
+    "strategy": "puzzle_first",
+    "title": "The Unraveling of Anonymous Peer Review: How AI Detection Accusations Create a New Lemons Problem in Academic Publishing",
+    "question": "Does the suspicion that submitted papers may be AI-generated cause reviewers to systematically penalize well-written papers by unknown authors, creating an adverse selection dynamic that favors established researchers?",
+    "insight": "Akerlof's lemons logic applies in reverse: when quality signals (clear prose, comprehensive literature reviews) become associated with AI use, the market for ideas penalizes exactly the papers that look \"too good\" from newcomers. This generates a perverse equilibrium where junior researchers strategically write worse to signal authenticity, while established researchers face no such penalty due to reputation capital. This is a novel information asymmetry created by technology.",
+    "empirical_data": "Submit pairs of identical papers (varying only author reputation signals: unknown vs. established-sounding affiliations) to a simulated peer review exercise with ~500 active reviewers recruited via Prolific, randomizing whether papers include a disclaimer about AI non-use, and measuring review scores and explicit AI suspicion flags.\n\n---"
+  },
+  {
+    "id": "seed_015",
+    "strategy": "puzzle_first",
+    "title": "Preference Laundering Through Algorithms: How People Use Recommendation Systems to Consume Content They Cannot Admit Wanting",
+    "question": "Do consumers strategically manipulate their algorithmic profiles to receive recommendations for content they desire but find socially or personally unacceptable to actively seek, and does this \"preference laundering\" increase welfare?",
+    "insight": "This connects to the idea of preferences people cannot admit to themselves (like closeted sexuality). Algorithmic recommendations create a psychologically distinct consumption pathway\u2014\"the algorithm showed me this\" provides plausible deniability both socially and to oneself. This means recommendation algorithms serve a function that existing models completely miss: they are commitment devices for consuming taboo-adjacent goods. This reframes the \"filter bubble\" debate entirely.",
+    "empirical_data": "Design an experiment on a content platform where users are randomized into (a) active search only, (b) algorithmic feed only, or (c) both, measuring consumption of pre-categorized sensitive content (political out-group media, mental health content, gender-atypical content) and post-consumption self-reports of satisfaction and attribution (\"I chose this\" vs. \"it was recommended\").\n\n---"
+  },
+  {
+    "id": "seed_016",
+    "strategy": "puzzle_first",
+    "title": "The Price of Performing Poverty: How Means-Testing Bureaucracy Functions as a Signaling Game That Selects Against the Working Poor",
+    "question": "Does the administrative burden of means-tested programs (documentation, wait times, repeated verification) function as a separating equilibrium that screens out precisely those low-income individuals with the highest opportunity cost of time\u2014namely, the self-employed and gig workers?",
+    "insight": "Existing work frames administrative burden as a cost; the reframing here is that it's an inadvertent auction mechanism that allocates benefits based on willingness-to-wait rather than need. Combined with the Hamory et al. insight that the self-employed's time is poorly valued, this means current welfare systems are systematically biased against the informally employed. This is a market design failure hiding inside bureaucratic design.",
+    "empirical_data": "Use India's Bhamashah program (as in Dupas et al.) or a comparable means-tested program with administrative data on application attempts, completion rates, and time-to-enrollment, linked to occupational data. Exploit variation in local office processing times (e.g., staff shortages) as an instrument for administrative burden.\n\n---"
+  },
+  {
+    "id": "seed_017",
+    "strategy": "puzzle_first",
+    "title": "Norm Entrepreneurs on Autopilot: How Default Settings in Workplace Software Reshape Social Norms About Availability",
+    "question": "Do default notification and status settings in workplace communication tools (Slack, Teams) causally create social norms around responsiveness that reduce worker welfare, analogous to the TikTok \"collective trap\"?",
+    "insight": "The Allcott et al. \"collective trap\" finding\u2014that users prefer a platform not to exist\u2014may apply even more powerfully to workplace tools where exit is not possible. The key insight is that software defaults (e.g., Slack's default \"active\" status, Teams' read receipts) function as norm-setting mechanisms that no individual firm or worker chose, yet they create equilibria where everyone monitors and responds 24/7. This is an externality imposed by product designers, not market participants.",
+    "empirical_data": "Partner with 2-3 medium-sized firms to run a cluster-randomized trial at the team level: treatment teams have defaults changed (notifications off after 6pm, no read receipts, delayed send encouraged) for 3 months. Measure response times, self-reported wellbeing (WHO-5), and productivity metrics (project completion, manager evaluations). Survey willingness-to-pay to keep vs. revert defaults.\n\n---"
+  },
+  {
+    "id": "seed_018",
+    "strategy": "puzzle_first",
+    "title": "The Politician's Tongue: Why Representatives Speak More Progressively on Culture Than They Vote",
+    "question": "Is the cultural representation gap documented by).).).).).]).]).]).]).])).]).]).]).]) BanerjeeBanerjee et al. partially explained by politicians' strategic adoption of culturally progressive language to satisfy media and activist gatekeepers, even when their voting behavior is closer to constituents?",
+    "insight": "The).]).]).]).]) ).]).]).]).]) BanerjeeBanerjee et al. finding that politicians are culturally more progressive than voters is typically interpreted as selection (progressive types enter politics). The alternative\u2014that politicians perform cultural progressivism linguistically while voting more conservatively\u2014implies the representation gap may be smaller in revealed preference (votes) than in stated beliefs (surveys). This is a preference falsification story applied to elites rather than citizens, flipping the Bursztyn et al. Saudi Arabia logic.",
+    "empirical_data": "Use German Bundestag data (matching the Banerjee et al. longitudinal German panel): compare politicians' survey responses on cultural issues with their actual roll-call votes on corresponding legislation, speeches (text-analyzed for cultural progressivism via NLP), and social media posts. Exploit cases where votes are \"free\" (no party whip) as moments of revealed preference.\n\n---"
+  },
+  {
+    "id": "seed_019",
+    "strategy": "puzzle_first",
+    "title": "When the Market Discovers Your Secret: The Welfare Effects of Algorithmic Outing in Insurance Markets",
+    "question": "Does the increasing ability of insurers to predict previously unobservable risk types (via wearables, genetic data, digital footprints) improve or destroy welfare, and does the answer depend on whether the insured *themselves* knew their type?",
+    "insight": "Classical adverse selection (Akerlof) assumes agents know their own type\u2014but what if people are in denial or genuinely ignorant about their health risks, and algorithms reveal this? The welfare calculus flips: information revelation may cause psychological harm (forced self-knowledge) even as it solves adverse selection. For people who strategically avoid health information (as documented in the \"ostrich effect\" literature), algorithmic typing constitutes a form of involuntary outing analogous to revealing sexual orientation. Markets can \"work\" in the efficiency sense while making participants worse off.",
+    "empirical_data": "Use a large insurer's introduction of wearable-based premium discounts as a natural experiment. Compare take-up, subsequent health-seeking behavior, and mental health claims between enrollees who receive \"surprising\" risk feedback (predicted risk diverges from self-assessed risk, measured pre-enrollment) vs. those whose predictions confirm self-assessments.\n\n---"
+  },
+  {
+    "id": "seed_020",
+    "strategy": "puzzle_first",
+    "title": "The Dunning-Kruger Market: How Overconfident Sellers Sustain High-Quality Equilibria in Expert Services",
+    "question": "Does seller overconfidence about their own quality paradoxically prevent market unraveling in credence goods markets (legal services, consulting, therapy), by keeping high-quality providers in the market who would otherwise exit if they correctly estimated their returns?",
+    "insight": "In a standard lemons model, high-quality sellers exit because the market doesn't reward quality. But if high-quality providers systematically overestimate how much the market recognizes their quality (a well-documented bias among experts), they stay in the market \"too long,\" inadvertently sustaining average quality. This means a cognitive bias\u2014normally seen as a market friction\u2014actually functions as the glue holding credence goods markets together. Correcting overconfidence (e.g., through transparent rating systems) could paradoxically cause market unraveling.",
+    "empirical_data": "Survey ~1,000 providers on a freelance platform (Upwork or similar) measuring their beliefs about own quality ranking and expected future earnings, then link to actual platform ratings, earnings trajectories, and exit decisions over 18 months. Exploit the staggered rollout of enhanced analytics dashboards (which give providers clearer signals about their relative standing) as a natural experiment that \"corrects\" overconfidence."
+  },
+  {
+    "id": "seed_021",
+    "strategy": "method_first",
+    "title": "The Price of Silence: How Anonymous Grading Policies Reveal Gender and Ethnic Bias in University Economics Departments",
+    "question": "Does the staggered adoption of anonymous grading policies across university departments causally reveal the magnitude of identity-based grading bias, and does this bias predict subsequent career sorting out of economics?",
+    "insight": "Most studies of grading bias compare across institutions or use lab experiments. The key move here is exploiting the fact that many universities adopted anonymous grading at the department level at different times (and some departments within the same university still haven't), creating a staggered diff-in-diff where the same student is graded anonymously in some courses and non-anonymously in others within the same semester. This within-student variation eliminates selection concerns entirely. The deeper contribution is linking the revealed bias magnitude to downstream career outcomes\u2014showing that grading bias is a mechanism for talent misallocation in economics itself.",
+    "empirical_data": "Partner with 3-5 UK universities (where anonymous marking has been adopted heterogeneously across departments since ~2005) to obtain transcript-level data with student fixed effects, linking to HESA Destinations of Leavers surveys for career outcomes.\n\n---"
+  },
+  {
+    "id": "seed_022",
+    "strategy": "method_first",
+    "title": "When the Algorithm Confesses: Mandatory AI Disclosure Laws and the Unraveling of Persuasion Markets",
+    "question": "Does mandating disclosure of AI-generated content in advertising cause an \"unraveling\" equilibrium where human-created content commands a premium, or does it merely reduce engagement uniformly?",
+    "insight": "The EU AI Act and China's Deep Synthesis Provisions (effective Jan 2023) require labeling of AI-generated content, but enforcement varies by platform and jurisdiction, creating a natural experiment. The non-obvious insight is that this isn't just about consumer response to labels\u2014it's an Akerlof-style unraveling problem. If AI disclosure reduces engagement, then firms using human creators have incentives to voluntarily disclose \"human-made,\" which further stigmatizes unlabeled content. This could create a quality-certification equilibrium that the market alone wouldn't produce.",
+    "empirical_data": "Scrape Weibo (where China's disclosure rules are enforced with visible labels) vs. matched content on platforms with laxer enforcement (e.g., Xiaohongshu pre-enforcement), using engagement metrics and a regression discontinuity around enforcement dates. Supplement with the field experiment methodology from the reading list paper on AI disclosure.\n\n---"
+  },
+  {
+    "id": "seed_023",
+    "strategy": "method_first",
+    "title": "Dying to Save: Mortality Salience from Nearby Funerals and Household Financial Decisions",
+    "question": "Does the quasi-random occurrence of neighbor deaths causally shift household savings behavior, insurance uptake, and risk preferences\u2014and do these effects reflect rational updating or psychological bias?",
+    "insight": "Behavioral economists have long theorized that mortality salience affects economic decisions, but causal identification is nearly impossible because death exposure correlates with health, wealth, and social networks. The identification strategy exploits the fact that in Danish administrative data, you can observe exact residential proximity to deaths of non-related individuals (neighbors), conditional on neighborhood fixed effects. A death on your apartment floor vs. three floors away provides exogenous variation in salience without confounding social ties. The non-obvious finding would be if people increase savings/insurance after neighbor deaths but *decrease* risky asset holdings\u2014consistent with present-bias reduction but not rational Bayesian updating about one's own mortality risk.",
+    "empirical_data": "Danish administrative registers (DST) linking exact residential addresses to death records, bank account data, pension contributions, and insurance purchases, using building-floor-level variation with individual and building fixed effects.\n\n---"
+  },
+  {
+    "id": "seed_024",
+    "strategy": "method_first",
+    "title": "The Shadow Price of Social Approval: Using Betting Market Fluctuations to Identify Pluralistic Ignorance in Real Time",
+    "question": "Can prediction market prices for socially sensitive outcomes (e.g., election of stigmatized candidates, legalization of taboo practices) be decomposed into a \"true belief\" component and a \"social desirability\" component by exploiting the anonymity gradient across betting platforms?",
+    "insight": "Prediction markets are supposed to aggregate private beliefs, but if traders face reputational costs (e.g., on Polymarket with public wallets vs. anonymous platforms), prices should diverge in proportion to social sensitivity. The key intellectual move is treating the *spread* between anonymous and non-anonymous prediction markets on the same event as a revealed-preference measure of pluralistic ignorance\u2014a market-based alternative to list experiments. This connects to the Saudi Arabia norms paper but provides a continuous, real-time measure rather than a one-shot survey correction.",
+    "empirical_data": "Matched event-level price data from Polymarket (pseudonymous but traceable blockchain wallets) vs. Betfair (more anonymous) vs. Kalshi (KYC-verified, potentially less anonymous) for culturally sensitive propositions (e.g., Trump-related markets, cannabis legalization, immigration quotas), with event fixed effects.\n\n---"
+  },
+  {
+    "id": "seed_025",
+    "strategy": "method_first",
+    "title": "Captive Markets Inside the Body: How Organ Transplant Waitlist Reforms Reveal the Value of Time for the Terminally Ill",
+    "question": "What is the revealed willingness-to-pay for an additional month of life among terminally ill patients, as identified by sharp changes in organ allocation priority rules?",
+    "insight": "Valuing a statistical life-year is a cornerstone of policy evaluation, but estimates for the terminally ill are essentially nonexistent because these individuals can't participate in standard labor market or stated-preference studies. The identification strategy uses the 2014 UNOS policy change that altered geographic organ allocation boundaries for livers in the US, creating sharp discontinuities in expected waiting times at transplant center boundaries. Patients near boundaries who suddenly faced longer waits made observable costly decisions\u2014relocating, switching centers, paying for temporary housing\u2014that reveal their marginal valuation of survival time. This directly informs the cost-sharing debate (as in the Medicare paper) by providing credible VSL estimates for the exact population affected by drug cost policies.",
+    "empirical_data": "UNOS/OPTN transplant waitlist registry data (publicly available with applications) linked to CMS hospital claims for relocation/transfer behavior, using a geographic RD at the old vs. new allocation boundary zones.\n\n---"
+  },
+  {
+    "id": "seed_026",
+    "strategy": "method_first",
+    "title": "The Contagion of Quitting: Peer Effects in Resignation Decisions Identified Through Mass Layoff Spillovers",
+    "question": "Does observing a coworker's involuntary job loss causally increase voluntary resignation rates among remaining employees, and does this effect propagate through workplace social networks rather than through rational updating about firm quality?",
+    "insight": "Voluntary turnover is typically studied as an individual optimization problem, but if quitting is partly a social norm (\"if they're leaving, maybe I should too\"), then firm-level turnover cascades are an equilibrium phenomenon with welfare implications. The identification challenge is separating peer influence from correlated firm shocks. The strategy exploits mass layoffs in *specific departments* within multi-department firms in matched employer-employee data: a layoff in Department A should not rationally update Department B employees about their own job security (different managers, budgets, functions), yet if resignations spike in Department B among employees socially connected to Department A (identified via shared cafeteria badge-ins, co-training cohorts, or pre-layoff email networks), this isolates the social contagion channel.",
+    "empirical_data": "German IAB linked employer-employee data for the layoff events and cross-department spillovers, potentially enriched with a partnership with a firm that has digital communication/interaction logs (e.g., Slack metadata from a willing tech company).\n\n---"
+  },
+  {
+    "id": "seed_027",
+    "strategy": "method_first",
+    "title": "Markets for Minds: How Therapist-Patient Matching Platforms Solve (or Fail to Solve) the Credence Goods Problem",
+    "question": "Does algorithmic matching of therapists to patients improve mental health outcomes relative to patient self-selection, and does the answer depend on whether the algorithm optimizes for revealed preferences or for clinical outcomes?",
+    "insight": "Psychotherapy is the canonical credence good: patients cannot evaluate quality before, during, or even after treatment. The standard market failure prediction is under-provision of quality, but digital platforms (like Bloit Inc. or BetterHelp) now algorithmically match patients to therapists using different objective functions\u2014some optimize for patient satisfaction (revealed preference), others for clinical symptom reduction (expert assessment). The non-obvious tension is that these can conflict: patients may prefer therapists who validate them rather than challenge them, creating a market where patient-choice platforms select for \"comfortable\" therapy and algorithm-choice platforms select for \"effective\" therapy. This is a new flavor of the algorithmic recommendations vs. human discretion paper.",
+    "empirical_data": "Partner with Bloit Inc. to run a three-arm RCT: (1) patient self-selects therapist, (2) algorithm matches based on predicted satisfaction, (3) algorithm matches based on predicted PHQ-9/GAD-7 improvement. Track clinical outcomes and retention over 12 weeks.\n\n---"
+  },
+  {
+    "id": "seed_028",
+    "strategy": "method_first",
+    "title": "The Invisible Curriculum: How Random Teacher-Student Dialect Matching Affects Human Capital Formation",
+    "question": "Does the quasi-random assignment of students to teachers who share their regional dialect causally improve academic performance, and is this effect mediated by altered expectations, communication clarity, or identity-based trust?",
+    "insight": "A large literature studies teacher-student racial and gender matching, but dialect is a richer and more continuous source of in-group/out-group identification that operates below conscious awareness\u2014connecting to the paper's interest in tacit knowledge. The identification uses the fact that in centralized teacher assignment systems (e.g., France's *mouvement*, Italy's transfer system), teachers are assigned to schools based on seniority points and slot availability, generating quasi-random variation in dialect distance between teacher and students within the same region. The mechanism decomposition matters: if it's trust/identity rather than comprehension, this suggests market failures in education extend beyond information to social-norm-mediated engagement.\n\nINSIGHT (continued): Dialect distance can be continuously measured using NLP on regional speech corpora, creating a dose-response design rather than a binary match indicator.",
+    "empirical_data": "Italian INVALSI student test score data linked to teacher assignment records from the Ministry of Education, combined with computational dialect-distance measures from the ALT (Atlante Linguistico della Toscana) or AIS dialect atlas, exploiting the centralized transfer system as an instrument.\n\n---"
+  },
+  {
+    "id": "seed_029",
+    "strategy": "method_first",
+    "title": "Preference Laundering Through Charitable Giving: Using Donor-Advised Fund Timing Rules to Identify Socially Suppressed Preferences",
+    "question": "Do donors use the opacity of donor-advised funds (DAFs) to direct money to causes they would be embarrassed to support publicly, and can the gap between public and DAF-channeled giving identify the \"social tax\" on stigmatized preferences?",
+    "insight": "This directly operationalizes the paper's interest in people expressing opinions/preferences against their will due to social pressure. DAFs allow donors to make tax-deductible contributions into an intermediary account and then anonymously direct grants to charities later. The key identification comes from the 2021 ACE Act proposals (which would have required DAFs to distribute within 15 years) that caused a sharp spike in DAF disbursements before the anticipated deadline\u2014a \"fire sale\" of anonymous giving that reveals the distribution of stigmatized preferences. If the composition of rushed DAF grants differs systematically from public giving (e.g., more to politically controversial causes, religious organizations donors' social circles would disapprove of, or causes associated with stigmatized identities), this gap measures pluralistic ignorance in charitable markets.",
+    "empirical_data": "IRS Form 990 data for DAF-sponsoring organizations (e.g., Fidelity Charitable, Schwab Charitable) combined with individual-identifiable public giving from FEC donation records and GuideStar profiles, exploiting the ACE Act anticipation window as a natural experiment.\n\n---"
+  },
+  {
+    "id": "seed_030",
+    "strategy": "method_first",
+    "title": "The Automation of Asking: How AI-Administered Surveys Eliminate (or Amplify) Social Desirability Bias Across Cultures",
+    "question": "Does replacing human enumerators with AI voice agents in sensitive survey questions reduce social desirability bias, and does the effect vary systematically with cultural tightness-looseness and the perceived \"humanness\" of the AI?",
+    "insight": "Survey methodology has long known that interviewer characteristics affect responses on sensitive topics, and the standard solution (self-administered surveys) sacrifices data quality in low-literacy populations. The non-obvious move is that AI interviewers occupy an uncanny middle ground: they provide the interactivity of human enumerators (probing, clarification) without the social judgment. But this could *backfire* in tight cultures (Gelfand's framework) where respondents project social expectations onto any interaction partner, or where AI is perceived as a government surveillance tool. The methodological contribution is establishing boundary conditions for when AI enumeration is a strict improvement versus when it amplifies bias\u2014directly relevant to the paper's interest in AI-enhanced data collection.",
+    "empirical_data": "Run a multi-country phone survey experiment (Kenya, Saudi Arabia, Germany, Japan\u2014varying on cultural tightness) with three arms: (1) human enumerator, (2) AI voice agent disclosed as AI, (3) AI voice agent not disclosed. Measure responses on sensitive topics (domestic violence, tax evasion, sexual orientation) and validate against known population benchmarks or list-experiment truth estimates. Can leverage existing survey infrastructure through IPA or J-PAL partnerships."
+  },
+  {
+    "id": "seed_031",
+    "strategy": "cross_pollination",
+    "title": "Product Market Traps in Education: When Everyone Must Get a Master's Degree Because Everyone Else Does",
+    "question": "Do non-user externalities\u2014analogous to those documented for social media by Bursztyn et al.\u2014explain credential inflation in graduate education, where individuals pursue degrees they'd prefer not to exist but cannot opt out of?",
+    "insight": "The \"collective trap\" framework from platform economics has never been applied to education markets, yet the mechanism is identical: the cost of *not* having a master's degree rises as more people get one, potentially making the median student worse off than in a world without widespread access. This reframes credential inflation not as a signaling arms race (Spence) but as a welfare-reducing consumption externality measurable with the same experimental tools.",
+    "empirical_data": "Run incentivized willingness-to-accept experiments with current master's students (e.g., MBA programs) measuring both standard consumer surplus from their degree and surplus accounting for the counterfactual where no one in their cohort had one\u2014directly mirroring the TikTok/Instagram deactivation design.\n\n---"
+  },
+  {
+    "id": "seed_032",
+    "strategy": "cross_pollination",
+    "title": "Algorithmic Recommendations and Human Discretion in Psychotherapy: When Should AI Therapists Defer to Humans?",
+    "question": "Using the framework from Kleinberg et al. on judicial overrides of algorithms, can we identify which AI-psychotherapy sessions benefit from human clinician override and which do not?",
+    "insight": "The bail decisions insight\u2014that 90% of human overrides destroy value but 10% add it\u2014has never been tested in healthcare delivery, yet AI therapy (like Bloit Inc.'s product) creates a natural setting where AI generates treatment plans that human supervisors can override. The selective-labels problem (you only observe outcomes for chosen treatments) applies identically and demands the same quasi-experimental correction.",
+    "empirical_data": "Partner with Bloit Inc. to collect session-level data on AI-generated therapeutic recommendations, human clinician overrides, and patient outcomes (PHQ-9, GAQ-7 trajectories), using the quasi-experimental tools from Kleinberg et al. to estimate the causal value of discretion.\n\n---"
+  },
+  {
+    "id": "seed_033",
+    "strategy": "cross_pollination",
+    "title": "Misperceived Norms About Career Ambition: A Pluralistic Ignorance Experiment Among Early-Career Professionals",
+    "question": "Do young professionals systematically overestimate their peers' desire for high-status corporate careers, and does correcting this misperception shift career choices toward entrepreneurship or public service?",
+    "insight": "Bursztyn et al. (2020) showed Saudi men misperceived norms about women working; the same mechanism likely operates in career markets where people choose consulting/finance not from preference but from believing \"everyone else genuinely wants this.\" This imports a social-norms correction experiment from gender economics into labor/career economics, where revealed preference is contaminated by preference falsification at massive scale.",
+    "empirical_data": "Run a field experiment through PumpkinCareers: survey students' private career preferences and beliefs about peers' preferences, then randomly provide norm-correction information to treatment groups, tracking actual job applications and offer acceptances over 6 months.\n\n---"
+  },
+  {
+    "id": "seed_034",
+    "strategy": "cross_pollination",
+    "title": "The Lemons Problem in AI-Generated Research: Quality Uncertainty When Reviewers Cannot Distinguish Human from Machine Scholarship",
+    "question": "Does the inability of peer reviewers to distinguish AI-assisted from human-generated research create an Akerlof lemons dynamic that drives high-effort human researchers out of certain subfields?",
+    "insight": "Akerlof's insight was about *statistical* quality discrimination\u2014buyers evaluate based on group averages. As AI lowers the cost of producing mediocre-but-polished manuscripts, reviewers cannot price quality at the individual level, so returns to genuine intellectual effort fall toward the group mean. This is the first application of the lemons model to the knowledge production market itself, which is striking because academia's entire institutional apparatus (peer review, tenure) exists precisely to solve this problem and may be failing.",
+    "empirical_data": "Conduct a large-scale experiment submitting pairs of abstracts/short papers to economists and other researchers for evaluation\u2014one human-written, one AI-generated on identical topics\u2014measuring detection accuracy, quality ratings, and stated willingness-to-cite, combined with a survey of researchers' own AI use and perceived incentives to invest in deep thinking.\n\n---"
+  },
+  {
+    "id": "seed_035",
+    "strategy": "cross_pollination",
+    "title": "Outside Options and Optimal Bargaining in Gig Economy Labor Markets: How Uber's Surge Pricing Reshapes Worker-Platform Negotiations",
+    "question": "Does the dynamic bargaining framework\u2014where principals adjust demands and pressure as agents' outside options fluctuate\u2014explain Uber drivers' labor supply responses to real-time changes in competitor platform pricing (Lyft, DoorDash)?",
+    "insight": "The Hwang bargaining model predicts that when outside options improve, the principal should *decrease demands and decrease pressure simultaneously*\u2014a complementarity. Gig platforms face exactly this problem in real time as competing apps' prices shift, but platform economists have modeled this as static labor supply elasticity rather than dynamic bargaining. The prediction is counterintuitive: platforms should give workers *more* flexibility (less pressure) precisely when competitors offer more, not less.",
+    "empirical_data": "Use driver-level panel data from a multi-apping survey/app-tracking study, combined with high-frequency surge pricing data across platforms, to test whether platforms that follow the \"decreasing demands, decreasing pressure\" complementarity retain drivers more effectively during periods of high competitor outside options.\n\n---"
+  },
+  {
+    "id": "seed_036",
+    "strategy": "cross_pollination",
+    "title": "Emissions Markets for Digital Attention: Designing a Cap-and-Trade System for Screen Time Externalities",
+    "question": "Can the successful design of India's particulate-matter emissions trading market (Greenstone et al.) be adapted to create a tradeable permit system for apps' attention-capture externalities, and would it reduce the social costs of digital distraction?",
+    "insight": "The Gujarat experiment proved that emissions markets work even with low state capacity by making compliance salient and tradeable. Digital attention generates analogous negative externalities (Li & Shi show peer contagion in app usage destroys academic/labor outcomes), but regulation has been limited to blunt bans (China's gaming restrictions). A cap-and-trade system where apps receive permits for user-hours and can trade them is economically equivalent but has never been formally analyzed\u2014the key design insight is that attention-capture is *measurable in real time* (unlike pollution historically), making monitoring trivially cheap.",
+    "empirical_data": "Design a lab-in-field experiment at a university (building on Li & Shi's Chinese university setting) where dormitory \"attention budgets\" are randomly assigned and students can trade unused screen-time permits, measuring GPA, health, and wellbeing outcomes relative to control dorms.\n\n---"
+  },
+  {
+    "id": "seed_037",
+    "strategy": "cross_pollination",
+    "title": "Tacit Knowledge and the Death of Experts: What Happens to Market Efficiency When Experienced Traders Retire?",
+    "question": "Does the retirement of experienced commodity traders\u2014who possess tacit, non-codifiable market knowledge\u2014cause measurable declines in price efficiency and increases in volatility in the specific markets they traded?",
+    "insight": "Polanyi's concept of tacit knowledge is widely discussed in philosophy and management but has never been causally identified in financial markets. The challenge is that tacit knowledge is by definition unobservable\u2014but retirements create exogenous *removal* of this knowledge. The non-obvious prediction is that algorithmic trading should *not* fully compensate because tacit knowledge involves recognizing novel pattern-breaks that weren't in training data. This connects the researcher's interest in tacit knowledge (#6 in their vision) directly to market microstructure.",
+    "empirical_data": "Use LinkedIn/industry directories to build a dataset of senior traders' retirement dates in thinly-traded commodity markets (e.g., specific agricultural futures), then run event studies on bid-ask spreads, price efficiency measures (variance ratios), and the frequency of \"flash\" dislocations around these exits, controlling for algorithmic trading volume.\n\n---"
+  },
+  {
+    "id": "seed_038",
+    "strategy": "cross_pollination",
+    "title": "The Erosion of Professional Norms: How Publicizing Corporate Misconduct Licenses Further Misconduct (A Field Experiment in Financial Compliance)",
+    "question": "Does the \"extreme-to-mainstream\" norm erosion mechanism documented by Bursztyn et al. around the 2016 election operate in corporate contexts, where publicizing that \"many firms cheat\" on compliance actually increases cheating by reducing the social cost of being caught?",
+    "insight": "Regulators and journalists assume that exposing widespread misconduct deters it through reputational threat, but the signaling model in Bursztyn et al. predicts the opposite: if the public signal suggests many firms engage in a behavior, each individual firm's expression of that behavior is less stigmatized, and observers (regulators, auditors) become less likely to sanction. This inverts a foundational assumption in enforcement economics and explains why waves of corporate scandals cluster.",
+    "empirical_data": "Run a field experiment with a financial regulator or compliance training platform: randomly expose compliance officers to information about either (a) the high prevalence of regulatory violations in their industry or (b) the severe consequences of violations, then track subsequent reporting behavior, audit outcomes, and internal whistleblowing rates over 12 months.\n\n---"
+  },
+  {
+    "id": "seed_039",
+    "strategy": "cross_pollination",
+    "title": "Precision-Targeted Nudges: Using Prenatal Screening Logic to Design Heterogeneous Health Interventions at Scale",
+    "question": "Can the two-stage targeting framework from precision medicine (cheap screen \u2192 expensive intervention) be applied to behavioral health nudges, where a cheap digital survey screens for \"nudge-receptive\" individuals before deploying costly personalized interventions?",
+    "insight": "Bhatt et al. show that a cheap noninvasive screen (cfDNA) can optimally target an expensive invasive test, improving outcomes while reducing costs. Behavioral economics has the same structure\u2014nudges work heterogeneously, and deploying expensive personalized interventions (health coaching, tailored messaging) to everyone is wasteful\u2014but no one has formally designed the *screening instrument* for nudge receptivity. The key non-obvious insight is that the optimal targeting design can *worsen* outcomes for some groups (as in the prenatal case), so the design problem is non-trivial.",
+    "empirical_data": "Use data from a large health insurer or employer wellness program: first deploy a cheap 5-minute digital survey measuring loss aversion, present bias, health literacy, and social-norm sensitivity; then randomize assignment to personalized vs. generic nudges conditional on screening results; compare health outcomes and cost-effectiveness of targeted vs. universal nudge deployment.\n\n---"
+  },
+  {
+    "id": "seed_040",
+    "strategy": "cross_pollination",
+    "title": "Causal Models in the Minds of Patients: Why People Cut Life-Saving Medications When Costs Rise",
+    "question": "Do patients' *folk causal models* of how medications work\u2014not just price sensitivity or present bias\u2014explain the paradox from Chandra et al. that high-risk patients cut back most on the drugs that would benefit them most?",
+    "insight": "Chandra et al. document that only one-third of 65-year-olds believe missing medications for a month could have serious consequences, but they treat this as a simple belief/information failure. Drawing on research on \"na\u00efve theories\" from cognitive psychology (Fernbach, Sloman), the deeper issue may be that patients hold specific *causal models* (e.g., \"blood pressure pills treat symptoms I currently feel\" vs. \"statins prevent invisible arterial buildup\") that systematically predict which drugs get cut. This reframes medication adherence from a price-elasticity problem to a causal-reasoning problem, generating different and more effective interventions.",
+    "empirical_data": "Survey Medicare Part D enrollees approaching the coverage gap, eliciting not just beliefs about drug importance but their *causal diagrams*\u2014how they think each medication works mechanistically\u2014then link these mental models to actual fill/refill behavior from claims data, testing whether causal-model type predicts drug-specific cutbacks above and beyond risk scores, costs, and standard health literacy measures."
+  },
+  {
+    "id": "seed_041",
+    "strategy": "contrarian",
+    "title": "The Preference Laundering Machine: How Revealed Preference Fails When People Are Ashamed of Their Own Choices",
+    "question": "To what extent do \"revealed preferences\" in consumer markets reflect preferences people would explicitly disavow\u2014and does this invalidate welfare conclusions drawn from choice data in domains like food, gambling, pornography, and social media?",
+    "insight": "Economics treats revealed preference as the gold standard for welfare analysis, but if people systematically choose things they wish they wouldn't (and not just due to time inconsistency, but due to genuine self-opacity about their own desires), then the entire revealed preference framework is measuring something other than welfare. This goes beyond behavioral \"mistakes\"\u2014it targets the philosophical foundations. The key move is distinguishing between choices people regret (time inconsistency) and choices people *cannot even acknowledge as their own preference* (identity-incongruent consumption).",
+    "empirical_data": "Run incentivized experiments where participants make real consumption choices (e.g., social media use, junk food, gambling) and then, under varying conditions of anonymity and plausible deniability, elicit their \"meta-preferences\" (what they wish they wanted). Compare welfare estimates using revealed preference vs. meta-preference data. Bloit Inc.'s AI-psychotherapy platform could provide a uniquely private context for eliciting these hidden meta-preferences at scale.\n\n---"
+  },
+  {
+    "id": "seed_042",
+    "strategy": "contrarian",
+    "title": "Markets Don't Clear Norms: Why the Law of One Price Fails When Transactions Carry Social Meaning",
+    "question": "Does the existence of social meaning attached to transactions (e.g., paying for sex, selling organs, charging friends for favors) create persistent, non-arbitrageable price distortions that violate the law of one price even in thick markets?",
+    "insight": "Economists generally treat \"repugnance\" as a friction that could in principle be overcome with enough surplus, but what if social meaning operates as an irreducible constraint\u2014not a transaction cost that shrinks with competition, but a force that *grows* with market thickness because observability increases? This would mean that some markets become *less* efficient as they scale, directly contradicting the standard intuition.",
+    "empirical_data": "Use cross-country variation in legalization of organ markets, sex work, and commercial surrogacy, combined with price and volume data from both legal and black markets. Supplement with vignette experiments varying market thickness (number of participants) and observability to test whether willingness to transact *decreases* as market size grows, conditional on social visibility.\n\n---"
+  },
+  {
+    "id": "seed_043",
+    "strategy": "contrarian",
+    "title": "The Median Voter Is a Fiction: Political Preferences Are Endogenous to the Menu of Candidates",
+    "question": "Do voters' stated policy preferences shift to match the candidate they have already chosen for non-policy reasons (charisma, identity), rather than candidates being chosen to match pre-existing preferences?",
+    "insight": "The median voter theorem and most political economy models assume voters have fixed, exogenous preferences over policy, and candidates converge to meet them. But if preferences are largely *rationalized post-hoc* from candidate attachment\u2014a reverse causality that's shockingly under-tested\u2014then the entire edifice of preference-based political economy is misspecified. This connects to cognitive dissonance theory but has radical implications for how we interpret election mandates and policy platforms.",
+    "empirical_data": "Exploit the random ordering of primaries (early vs. late state voters) and candidate dropout events as shocks that force voters to switch candidates, then measure whether their stated policy preferences shift toward the new candidate's positions. Use ANES panel data combined with precise primary timing, or run a lab experiment where participants are quasi-randomly assigned a \"team\" and then elicit policy preferences before and after team assignment.\n\n---"
+  },
+  {
+    "id": "seed_044",
+    "strategy": "contrarian",
+    "title": "The Efficiency of Inefficiency: Why Firms That Deliberately Waste Resources Outperform Optimizers",
+    "question": "Do firms that maintain organizational \"slack\"\u2014deliberately unoptimized budgets, redundant roles, unmonitored employee time\u2014systematically outperform firms that pursue allocative efficiency, and if so, does this challenge the fundamental assumption that competition selects for efficient firms?",
+    "insight": "Economics assumes competitive pressure drives firms toward the production possibility frontier, but if innovation, resilience, and employee creativity require *waste* (slack resources with no measurable ROI), then the most \"efficient\" firms are actually fragile and uncreative. The sacred cow is that market competition optimizes production\u2014but it may instead create a destructive race toward brittleness. This connects Google's famous \"20% time\" to a deeper theoretical point about the incompatibility of static efficiency and dynamic capability.",
+    "empirical_data": "Use the staggered adoption of private equity buyouts (which impose extreme efficiency optimization) as a natural experiment. Compare innovation output (patents, new products), survival rates during recessions, and long-run profitability of PE-targeted firms vs. matched controls using Compustat and patent data. Supplement with detailed time-use data from a partner firm (e.g., PumpkinCareers' consulting clients) measuring how employee \"unstructured\" time correlates with creative output.\n\n---"
+  },
+  {
+    "id": "seed_045",
+    "strategy": "contrarian",
+    "title": "Information Doesn't Help: When Reducing Asymmetric Information Makes Markets Worse",
+    "question": "Are there empirically important markets where providing more information to the less-informed party *reduces* total welfare by triggering adverse strategic responses from the more-informed party?",
+    "insight": "Since Akerlof, the profession has treated information asymmetry as a market failure that disclosure policies should fix. But if informed parties respond to disclosure requirements by strategically distorting the disclosed dimension (Goodharting), or if uninformed parties cannot process the information and instead use it as a signal of risk (\"why are they telling me this?\"), then mandatory disclosure can destroy the very markets it's meant to save. The sacred cow is that transparency is monotonically good.",
+    "empirical_data": "Study the staggered introduction of calorie labeling laws, clinical trial registrations, or Zillow's Zestimate across U.S. jurisdictions. Measure not just consumer behavior but *seller strategic response*\u2014do restaurants reformulate foods in unhealthy ways on undisclosed dimensions? Do home sellers delist when Zestimates are unfavorable, creating a new lemons problem? Use difference-in-differences with the precise rollout dates of these disclosure mandates.\n\n---"
+  },
+  {
+    "id": "seed_046",
+    "strategy": "contrarian",
+    "title": "The Willingness-to-Pay for Nothing: Experimental Evidence That WTP Measures Mostly Capture Survey Compliance, Not Preferences",
+    "question": "What fraction of stated WTP in contingent valuation and incentive-compatible mechanisms reflects genuine economic preferences versus participants' desire to give the \"expected\" answer or simply complete the task?",
+    "insight": "WTP is the workhorse of welfare economics and cost-benefit analysis. But if a large share of measured WTP is an artifact of the elicitation process\u2014people anchoring on suggested prices, wanting to appear cooperative, or treating the task as a social interaction rather than an economic decision\u2014then trillions of dollars of policy decisions are based on noise. This isn't the usual \"hypothetical bias\" critique; the claim is that even *incentivized* mechanisms largely measure compliance with experimental demand rather than latent value.",
+    "empirical_data": "Design an experiment where participants state WTP for real goods *and* for fictitious goods (described with equal plausibility but literally nonexistent, revealed ex-post). If WTP for fictitious goods is substantial and correlated with WTP for real goods, this identifies the \"compliance\" component. Run on Prolific with N=5,000, varying experimenter authority cues, time pressure, and payment structure. Compare the compliance-adjusted WTP to market prices for the real goods.\n\n---"
+  },
+  {
+    "id": "seed_047",
+    "strategy": "contrarian",
+    "title": "Comparative Advantage Is an Artifact of History, Not Endowments: Evidence from Arbitrary Colonial Crop Assignments",
+    "question": "How much of current international trade patterns attributed to \"comparative advantage\" actually reflects path-dependent lock-in from arbitrary historical crop and industry assignments rather than any underlying factor endowment?",
+    "insight": "Trade theory's most celebrated result\u2014that countries trade based on relative productivity differences rooted in endowments\u2014is treated as near-tautological. But if countries that were *arbitrarily* assigned to produce certain crops by colonial administrators in the 18th-19th centuries still specialize in those sectors today, despite no endowment advantage, then \"comparative advantage\" is largely a label we put on historical accidents. The Heckscher-Ohlin and Ricardian frameworks would be describing an equilibrium, not explaining it.",
+    "empirical_data": "Use variation in colonial crop mandates across Indonesian islands (Dutch Cultivation System, 1830-1870), where the Dutch quasi-randomly assigned specific crops (coffee, sugar, indigo) to different regions regardless of soil suitability. Compare current agricultural specialization and export composition to original colonial assignments vs. agronomic suitability data from FAO's Global Agro-Ecological Zones database.\n\n---"
+  },
+  {
+    "id": "seed_048",
+    "strategy": "contrarian",
+    "title": "The Price Mechanism as Placebo: Experimental Evidence That Pricing Goods Changes Their Perceived (Not Just Allocated) Value",
+    "question": "Does the act of putting a price on a good causally change people's experienced utility from consuming it\u2014not through selection or income effects, but through the price itself altering the phenomenological experience?",
+    "insight": "Economics assumes prices allocate goods but don't change the goods themselves. The wine-placebo literature hints otherwise, but the profession has never confronted the radical implication: if pricing changes experienced utility, then the fundamental welfare theorems fail because the utility function is endogenous to the allocation mechanism. A good allocated by lottery versus by price would generate *different* consumer surplus even for the same person consuming the same good\u2014making mechanism-neutral welfare comparisons impossible.",
+    "empirical_data": "Partner with a food service or coffee shop to randomly assign identical products different prices (including free) to different customers, using loyalty-app randomization. Measure experienced satisfaction using both self-report and physiological measures (heart rate variability, facial expression via phone camera). Critical design: participants consume *before* learning the price, *at the time of* learning, and *after*\u2014to decompose anticipatory vs. experiential vs. retrospective price effects.\n\n---"
+  },
+  {
+    "id": "seed_049",
+    "strategy": "contrarian",
+    "title": "Homo Economicus as a Self-Fulfilling Prophecy: Does Economics Education Cause the Behavior It Purports to Describe?",
+    "question": "Does exposure to the rational self-interest model in economics courses causally change students' behavior in ways that make the model appear more valid\u2014and does this iatrogenic effect propagate through institutions staffed by economics graduates?",
+    "insight": "There's scattered evidence that economics students free-ride more and cooperate less, but the field has never seriously grappled with the implication: if teaching the model *creates* the behavior, then empirical \"validation\" of rational self-interest in market settings may partly reflect the education of market participants, not human nature. This would mean economics is not a descriptive science but a performative one\u2014and the profession's prescriptive authority rests on a circular foundation.",
+    "empirical_data": "Exploit mandatory economics course requirements at universities that recently added or dropped them from non-economics majors' curricula (e.g., engineering or nursing programs). Use a difference-in-differences design comparing prosocial behavior (charitable giving from university records, cooperative game play in lab experiments, peer evaluations) of cohorts just before vs. after the requirement change. Supplement with a global survey of economics vs. non-economics graduates in managerial positions, measuring firm-level cooperation norms.\n\n---"
+  },
+  {
+    "id": "seed_050",
+    "strategy": "contrarian",
+    "title": "The Deadweight Loss of Deadweight Loss: How the Profession's Favorite Welfare Measure Systematically Biases Policy Toward the Status Quo",
+    "question": "Does the standard practice of measuring policy costs in deadweight loss (DWL) terms\u2014which by construction treats the pre-policy allocation as the welfare benchmark\u2014create a systematic bias against redistributive, corrective, or norm-changing policies whose benefits are illegible to the Marshallian framework?",
+    "insight": "DWL is treated as an objective measure of inefficiency, but it embeds a controversial normative choice: the current distribution of endowments and preferences is the right baseline. If preferences are shaped by institutions (as in idea #8 and #9), or if the current allocation reflects historical injustice or market power, then DWL is measuring deviation from an *arbitrary* benchmark, not from an optimum. The profession's reliance on DWL may explain why economists systematically favor deregulation and oppose paternalism\u2014not because of evidence, but because of a measurement artifact baked into the tool.",
+    "empirical_data": "Conduct a meta-analysis of all cost-benefit analyses submitted to the U.S. Office of Information and Regulatory Affairs (OIRA) from 2000-2023 (publicly available in regulatory impact analyses). Code whether DWL was the primary welfare measure and whether the policy was recommended for adoption. Test whether DWL-based analyses are systematically more likely to reject policies than analyses using alternative welfare measures (e.g., equivalent variation with non-market valuations, capability-based measures). Supplement with a survey experiment where economists evaluate identical policies framed with DWL vs. alternative welfare metrics."
+  }
+]
