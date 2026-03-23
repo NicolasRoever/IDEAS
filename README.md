@@ -24,3 +24,5 @@ All in all, the generator did a good job. It cost 46 cents to run. Maybe we coul
 This was super expensive - $2.41. 
 
 ## Insights from Run 2 
+
+We defnitiely need to fix the judge. Almost useless right now. Costs are at 80cts, which is good. 
